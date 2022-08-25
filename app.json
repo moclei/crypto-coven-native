@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "crypto-coven-native",
+    "slug": "crypto-coven-native",
+    "version": "1.0.0",
+    "sdkVersion": "44.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "com.moclei.cryptocovennative",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "wc"
+            },
+          ],
+        }
+      ]
+    }
+  }
+}
