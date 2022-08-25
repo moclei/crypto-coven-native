@@ -132,13 +132,6 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook",
-      "pre-commit": "lint-staged && tsc",
-      "pre-push": "test"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": "eslint --fix --ext '.ts,.tsx,.js,.jsx' -c .eslintrc.json"
   }
