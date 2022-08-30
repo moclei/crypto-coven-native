@@ -61,15 +61,6 @@ export default function AssetView({
   const asset = useMemo(() => {
     return route.params.asset;
   }, [route]);
-  useEffect(() => {
-    /* console.debug(
-      "Trait types: ",
-      route.params.asset.traits.map((t) => t.trait_type)
-    );*/
-    /*route.params.asset.traits.forEach((t) =>
-      console.debug("* " + JSON.stringify(t))
-    );*/
-  }, [route]);
   const className = useMemo(() => {
     return getTrait(asset, "Archetype of Power") || "Unknown";
   }, [route]);

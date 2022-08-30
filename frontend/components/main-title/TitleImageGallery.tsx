@@ -20,7 +20,8 @@ type ImageBoxProps = {
 const StyledImageBox = styled.Image<ImageBoxProps>`
   height: ${(props) => props.size + "px"};
   width: ${(props) => props.size + "px"};
-  border: 4px solid white;
+  border-width: 4px;
+  border-color: white;
   margin: 0 8px;
   opacity: ${(props) => props.opacity};
 `;

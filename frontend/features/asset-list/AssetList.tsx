@@ -1,12 +1,12 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import React, { useEffect } from "react";
+import React from "react";
 import { FlatList } from "react-native";
 import styled from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
 
 import AssetListItem from "./AssetListItem";
-import ClamListItem from "./ClamListItem";
+import ShellListItem from "./ShellListItem";
 
 const StyledAssetList = styled.SafeAreaView`
   width: 100%;
@@ -25,18 +25,13 @@ const StyledImageBackground = styled.ImageBackground`
 `;
 
 export default function AssetList(): JSX.Element {
-  const route = useRoute<RouteProp<RootStackParamList, "AssetsList">>();
-  const { witches, clam } = route.params;
-  /*  useEffect(() => {
-    if (assets && assets.length > 0) {
-      // console.debug("# of Assets: ", assets.length);
-    }
-  }, [assets]);*/
-  const renderItem = ({ item }) => {
+  const route = useRoute<RouteProp<RootStackParamList, "AssetList">>();
+  const { witches, shell } = route.params;
+  const renderItem = ({ item, index }) => {
     if (item.collection.slug === "sirens-shell") {
-      return <ClamListItem data={clam} index={clam.id} />;
+      return <ShellListItem data={shell} key={shell.id} index={index} />;
     }
-    return <AssetListItem data={item} index={item.id} />;
+    return <AssetListItem data={item} key={item.id} index={index} />;
   };
   return (
     <StyledAssetList>
@@ -45,7 +40,7 @@ export default function AssetList(): JSX.Element {
         resizeMode="cover"
       >
         <FlatList
-          data={[...witches, clam]}
+          data={[...witches, shell]}
           numColumns={2}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}

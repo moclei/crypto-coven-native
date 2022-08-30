@@ -2,10 +2,13 @@ import {
   Inconsolata_600SemiBold,
   useFonts,
 } from "@expo-google-fonts/inconsolata";
+import { useNavigation } from "@react-navigation/core";
+import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { Text } from "react-native";
 import styled from "styled-components/native";
 
+import { RootStackParamList } from "../../../App";
 import MenuExpandIcon from "../../icons/MenuExpandIcon";
 
 const StyledContainer = styled.View`
@@ -16,15 +19,17 @@ const StyledContainer = styled.View`
   justify-content: flex-end;
 `;
 
-const VerticalLine = styled.View`
+const VerticalLine = styled.View<StyledButtonProps>`
   height: 12px;
   margin: 0 4px 0 8px;
-  border: 0.75px solid black;
+  border-width: 0.75px;
+  border-color: ${(props) => (props.dark ? "white" : "rgb(30, 33, 37)")};
 `;
 
 type StyledButtonProps = {
   opacity: number;
   size: number;
+  dark: boolean;
 };
 const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
   display: flex;
@@ -36,7 +41,8 @@ const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
   margin: 0 16px;
   background-color: transparent;
   color: rgb(30, 33, 37);
-  border: 1px solid rgb(30, 33, 37);
+  border-width: 1px;
+  border-color: ${(props) => (props.dark ? "white" : "rgb(30, 33, 37)")}
   opacity: 1;
   width: 136px;
   border-radius: 8px;
@@ -50,23 +56,28 @@ const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
 
 type ButtonProps = {
   walletAddress: string;
+  navigation?: any;
+  dark: boolean;
 };
-
+type DrawerProps = DrawerScreenProps<RootStackParamList, "Menu">;
 export default function WalletMenuButton({
   walletAddress,
+  navigation,
+  dark,
 }: ButtonProps): JSX.Element {
+  // const navigation = useNavigation<DrawerProps["navigation"]>();
   const [fontsLoaded] = useFonts({
     Inconsolata_600SemiBold,
   });
   const onMenuPress = () => {
-    console.debug("onMenuPress");
+    navigation.toggleDrawer();
   };
   return (
     <StyledContainer>
-      <StyledButton onPress={onMenuPress}>
+      <StyledButton onPress={onMenuPress} dark={dark}>
         <Text
           style={{
-            color: "black",
+            color: dark ? "white" : "black",
             fontFamily: "Inconsolata_600SemiBold",
             textTransform: "uppercase",
           }}
@@ -78,8 +89,8 @@ export default function WalletMenuButton({
               walletAddress.length - 1
             )}
         </Text>
-        <VerticalLine />
-        <MenuExpandIcon />
+        <VerticalLine dark={dark} />
+        <MenuExpandIcon color={dark ? "white" : "black"} />
       </StyledButton>
     </StyledContainer>
   );
