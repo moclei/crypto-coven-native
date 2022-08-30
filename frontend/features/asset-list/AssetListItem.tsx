@@ -14,20 +14,18 @@ interface StyledItemProps {
 const StyledALItem = styled.TouchableOpacity<StyledItemProps>`
   align-items: center;
   justify-content: space-between;
-  background-color: transparent;
   color: white;
-  height: 300px;
-  display: flex;
-  flex: 1;
+  height: 260px;
+  width: 50%;
   padding-right: ${(props) =>
     props.index === 0 || props.index % 2 === 0 ? "12px" : "24px"}
   padding-left: ${(props) =>
-    props.index === 0 || props.index % 2 === 0 ? "12px" : "24px"}
+    props.index === 0 || props.index % 2 === 0 ? "24px" : "12px"}
 `;
 
 const StyledImage = styled.Image`
   width: 100%;
-  height: 180px;
+  height: 160px;
   align-items: center;
   justify-content: center;
 `;
@@ -35,6 +33,7 @@ const StyledImage = styled.Image`
 const StyledTextContainer = styled.View`
   display: flex;
   flex: 1;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -43,16 +42,17 @@ const StyledTextContainer = styled.View`
 interface AssetItemListProps {
   data: CovenAsset;
   index: number;
+  key: number;
 }
 
-type AssetsListProps = NativeStackScreenProps<RootStackParamList, "AssetsList">;
+type AssetListProps = NativeStackScreenProps<RootStackParamList, "AssetList">;
 export default function AssetListItem({
   data,
+  key,
   index,
 }: AssetItemListProps): JSX.Element {
-  const navigation = useNavigation<AssetsListProps["navigation"]>();
+  const navigation = useNavigation<AssetListProps["navigation"]>();
   const onPress = (asset: CovenAsset) => {
-    // console.debug("ListItem, onPress, asset: ", asset);
     navigation.navigate("AssetView", {
       asset: asset,
     });

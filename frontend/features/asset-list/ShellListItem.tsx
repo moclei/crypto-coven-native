@@ -7,26 +7,20 @@ import { CovenAsset } from "../../../model/types";
 import { RootStackParamList } from "../../App";
 import Body1 from "../../components/typography/Body1";
 
-const bg = "https://d3ohv66tlx3ep1.cloudfront.net/shell_bg.png";
-const shell = "https://d3ohv66tlx3ep1.cloudfront.net/shell.png";
-const glow = "https://d3ohv66tlx3ep1.cloudfront.net/glow.png";
-
-interface StyledClamProps {
+interface StyledShellProps {
   index: number;
 }
 
-const StyledClamListItem = styled.TouchableOpacity<StyledClamProps>`
+const StyledShellListItem = styled.TouchableOpacity<StyledShellProps>`
   align-items: center;
   justify-content: space-between;
-  background-color: transparent;
   color: white;
   height: 300px;
-  display: flex;
-  flex: 1;
+  width: 50%;
   padding-right: ${(props) =>
     props.index === 0 || props.index % 2 === 0 ? "12px" : "24px"}
   padding-left: ${(props) =>
-    props.index === 0 || props.index % 2 === 0 ? "12px" : "24px"}
+    props.index === 0 || props.index % 2 === 0 ? "24px" : "12px"}
 `;
 
 const StyledImage = styled.Image`
@@ -44,31 +38,28 @@ const StyledTextContainer = styled.View`
   justify-content: flex-start;
 `;
 
-interface ClamListItemProps {
+interface ShellListItemProps {
   data: CovenAsset;
   index: number;
 }
 
-type AssetsListProps = NativeStackScreenProps<RootStackParamList, "AssetsList">;
-export default function ClamListItem({
+type AssetListProps = NativeStackScreenProps<RootStackParamList, "AssetList">;
+export default function ShellListItem({
   data,
   index,
-}: ClamListItemProps): JSX.Element {
-  const navigation = useNavigation<AssetsListProps["navigation"]>();
-  useEffect(() => {
-    // console.debug("ClamListItem, data: ", data);
-  }, []);
+}: ShellListItemProps): JSX.Element {
+  const navigation = useNavigation<AssetListProps["navigation"]>();
   const onPress = (asset: CovenAsset) => {
-    navigation.navigate("ClamView", {
+    navigation.navigate("ShellView", {
       asset: asset,
     });
   };
   return (
-    <StyledClamListItem index={index} onPress={() => onPress(data)}>
+    <StyledShellListItem index={index} onPress={() => onPress(data)}>
       <StyledImage source={{ uri: data.asset_contract.image_url }} />
       <StyledTextContainer>
         <Body1>{data.name}</Body1>
       </StyledTextContainer>
-    </StyledClamListItem>
+    </StyledShellListItem>
   );
 }

@@ -1,6 +1,6 @@
 import { Audio, AVPlaybackStatus } from "expo-av";
 import { Sound } from "expo-av/build/Audio/Sound";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Animated, View } from "react-native";
 import styled from "styled-components/native";
 
@@ -8,7 +8,6 @@ import { CovenAsset } from "../../../model/types";
 import { SoundPlayer } from "../sound-player/SoundPlayer";
 
 const shell = "https://d3ohv66tlx3ep1.cloudfront.net/shell.png";
-// const sirenSongUrl = "https://d3ohv66tlx3ep1.cloudfront.net/siren_song.mp3";
 
 const StyledImageBackground = styled.ImageBackground`
   align-items: flex-start;
@@ -32,16 +31,16 @@ interface AssetViewProps {
   index: number;
 }
 
-let isUnmounting = false;
-
-export default function ClamView({ data, index }: AssetViewProps): JSX.Element {
+export default function ShellView({
+  data,
+  index,
+}: AssetViewProps): JSX.Element {
   const hoverAnimation = useRef(new Animated.ValueXY()).current;
   const [sound] = useState<Sound>(new Audio.Sound());
   const [status, setStatus] = useState<AVPlaybackStatus>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const _onPlaybackStatusUpdate = (playbackStatus) => {
-    if (isUnmounting) return;
     if (!playbackStatus.isLoaded) {
       // Update your UI for the unloaded state
       if (playbackStatus.error) {
@@ -70,15 +69,12 @@ export default function ClamView({ data, index }: AssetViewProps): JSX.Element {
   useEffect(() => {
     loadSound().then(() => console.debug("loaded audio"));
     return () => {
-      isUnmounting = true;
       sound.unloadAsync().then(() => console.debug("unloaded audio"));
     };
   }, [sound]);
 
   async function loadSound() {
-    console.debug("loadSound");
     sound.setOnPlaybackStatusUpdate(_onPlaybackStatusUpdate);
-    console.debug("setOnPlaybackStatusUpdate");
     try {
       await sound.loadAsync(
         // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -90,19 +86,11 @@ export default function ClamView({ data, index }: AssetViewProps): JSX.Element {
     }
     console.debug("loadAsync called");
     return () => {
-      isUnmounting = true;
+      /*isUnmounting = true;*/
       sound.unloadAsync().then(() => console.log("unloaded audio"));
     };
   }
 
-  /*  useEffect(() => {
-    return sound
-      ? () => {
-          console.log("Unloading Sound");
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);*/
   useEffect(() => {
     Animated.loop(
       Animated.sequence([

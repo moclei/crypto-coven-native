@@ -14,24 +14,41 @@ const StyledContainer = styled.View`
 
 type MoonStyleProps = {
   size: number;
+  dark: boolean;
 };
 const StyledMoon = styled.View<MoonStyleProps>`
-  /*box-sizing: border-box;*/
   border-radius: ${(props) => props.size / 2 + "px"};
   margin-top: 105px;
   width: ${(props) => props.size + "px"};
   height: ${(props) => props.size + "px"};
-  /* cc-lighter-orange */
-  background: #fee0c5;
+  background: ${(props) => (props.dark ? "#773800" : "#fee0c5")};
   border: 1px solid rgba(0, 0, 0, 0.03);
 `;
-const size = 150;
-export default function MainTitle(): JSX.Element {
+type MainTitleProps = {
+  dark?: boolean;
+  hideWitchGallery?: boolean;
+  size?: number;
+  fontSize?: number;
+};
+export default function MainTitle({
+  dark = false,
+  hideWitchGallery = false,
+  size = 150,
+  fontSize = 40,
+}: MainTitleProps): JSX.Element {
   return (
     <StyledContainer>
-      <StyledMoon size={size} />
-      <Title style={{ top: -(size * 0.75) }}>crypto coven</Title>
-      <TitleImageGallery />
+      <StyledMoon size={size} dark={dark} />
+      <Title
+        style={{
+          color: dark ? "white" : "black",
+          top: -(size * 0.75),
+          fontSize: fontSize,
+        }}
+      >
+        crypto coven
+      </Title>
+      {!hideWitchGallery && <TitleImageGallery />}
     </StyledContainer>
   );
 }

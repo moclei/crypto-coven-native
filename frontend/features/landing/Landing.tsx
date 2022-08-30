@@ -1,8 +1,10 @@
 import { useNavigation } from "@react-navigation/core";
+import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
+import { Button } from "react-native";
 import styled from "styled-components/native";
 
-import { LandingNavProps } from "../../App";
+import { LandingNavProps, RootStackParamList } from "../../App";
 import MainTitle from "../../components/main-title/MainTitle";
 
 const StyledApp = styled.View`
@@ -11,8 +13,10 @@ const StyledApp = styled.View`
   background: #eeeeee;
 `;
 
-export default function Landing(): JSX.Element {
-  const navigation = useNavigation<LandingNavProps["navigation"]>();
+export default function Landing({ navigation }): JSX.Element {
+  /*const navigation = useNavigation<
+    DrawerScreenProps<RootStackParamList, "Landing">["navigation"]
+  >();*/
 
   return (
     <StyledApp>
