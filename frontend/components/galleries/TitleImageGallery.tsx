@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components/native";
 
-import Title from "../typography/Title";
-
 const StyledContainer = styled.View`
   display: flex;
   flex-direction: row;

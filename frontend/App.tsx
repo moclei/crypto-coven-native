@@ -30,6 +30,7 @@ import AssetView from "./features/asset-view/AssetView";
 import ShellView from "./features/asset-view/ShellView";
 import Header from "./features/header/Header";
 import Landing from "./features/landing/Landing";
+import LoreScreen from "./features/lore/LoreScreen";
 import MenuDrawer from "./features/menu-drawer/MenuDrawer";
 
 export type RootStackParamList = {
@@ -234,6 +235,20 @@ export default function App(): JSX.Element {
                 shadowOpacity: 0,
               },
             })}
+          />
+          <Drawer.Screen
+            name={"LoreScreen"}
+            component={LoreScreen}
+            options={{
+              header: ({ navigation, route, options }) =>
+                getNavHeader(navigation, route, options, true),
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontFamily: "Eskapade",
+                fontSize: 32,
+              },
+              title: "Lore",
+            }}
           />
           <Drawer.Screen
             name="AssetStack"

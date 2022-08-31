@@ -1,49 +1,46 @@
-import {
-  Inconsolata_400Regular,
-  useFonts,
-} from "@expo-google-fonts/inconsolata";
+import { useFonts } from "@expo-google-fonts/inconsolata";
 import AppLoading from "expo-app-loading";
 import React, { ReactNode } from "react";
 import styled from "styled-components/native";
 
-type StyledHeader3Props = {
+type StyledHeader2Props = {
   color: string;
   opacity: number;
 };
-
-const StyledBody2 = styled.Text`
-  font-size: 16px;
-  color: ${(props) => props.color || "white"};
+const StyledHeader2 = styled.Text<StyledHeader2Props>`
+  font-size: 40px;
+  letter-spacing: 4px;
+  color: ${(props) => props.color || "black"};
   opacity: ${(props) => props.opacity || 1};
-  line-height: 24px;
+  padding: 24px 0;
 `;
 
-interface Body2Props {
+interface Header2Props {
   children: ReactNode;
   style?: React.CSSProperties;
   color?: string;
   opacity?: number;
 }
-export default function Body2({
+export default function Header2({
   children,
   style,
   color,
   opacity,
-}: Body2Props): JSX.Element {
+}: Header2Props): JSX.Element {
   const [fontsLoaded] = useFonts({
-    Inconsolata_400Regular,
+    Eskapade: require("../../../assets/fonts/Eskapade-Fraktur.ttf"),
   });
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
-      <StyledBody2
+      <StyledHeader2
         color={color}
         opacity={opacity}
-        style={[{ fontFamily: "Inconsolata_400Regular" }, style]}
+        style={[{ fontFamily: "Eskapade" }, style]}
       >
         {children}
-      </StyledBody2>
+      </StyledHeader2>
     );
   }
 }

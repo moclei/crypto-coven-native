@@ -1,9 +1,8 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components/native";
 
+import TitleImageGallery from "../galleries/TitleImageGallery";
 import Title from "../typography/Title";
-
-import TitleImageGallery from "./TitleImageGallery";
 
 const StyledContainer = styled.View`
   display: flex;
