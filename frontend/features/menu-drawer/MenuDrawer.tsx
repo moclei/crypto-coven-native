@@ -26,7 +26,7 @@ export default function MenuDrawer({ navigation, witches, shells }) {
   };
   const onCreatorsPress = () => {
     console.debug("onCreatorsPress");
-    navigation.navigate("LoreScreen");
+    navigation.navigate("LoreStack");
   };
 
   return (

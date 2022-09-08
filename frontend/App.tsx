@@ -22,7 +22,7 @@ import {
 import { useWalletConnect } from "@walletconnect/react-native-dapp";
 import React, { useCallback, useEffect, useState } from "react";
 
-import { CovenAsset } from "../model/types";
+import { CovenAsset, WitchArchetype } from "../model/types";
 
 import AppLoading from "./features/app-loading/AppLoading";
 import AssetList from "./features/asset-list/AssetList";
@@ -30,6 +30,7 @@ import AssetView from "./features/asset-view/AssetView";
 import ShellView from "./features/asset-view/ShellView";
 import Header from "./features/header/Header";
 import Landing from "./features/landing/Landing";
+import ArchetypeView from "./features/lore/ArchetypeView";
 import LoreScreen from "./features/lore/LoreScreen";
 import MenuDrawer from "./features/menu-drawer/MenuDrawer";
 
@@ -42,6 +43,7 @@ export type RootStackParamList = {
   };
   AssetList: { witches: CovenAsset[]; shell: CovenAsset };
   AssetView: { asset: CovenAsset };
+  ArchetypeView: { archetype: WitchArchetype };
   ShellView: { asset: CovenAsset };
   Menu: Record<string, unknown>;
 };
@@ -204,6 +206,38 @@ export default function App(): JSX.Element {
       </Stack.Navigator>
     );
   }
+
+  function LoreStack() {
+    return (
+      <Stack.Navigator initialRouteName="LoreScreen">
+        <Stack.Screen
+          name="LoreScreen"
+          component={LoreScreen}
+          options={{
+            header: ({ navigation, route, options }) =>
+              getNavHeader(navigation, route, options, true),
+          }}
+        />
+        <Stack.Screen
+          name="ArchetypeView"
+          component={ArchetypeView}
+          options={({ route }) => ({
+            headerStyle: {
+              backgroundColor: "#1e2125",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontFamily: "Eskapade",
+              fontSize: 32,
+              textTransform: "capitalize",
+            },
+            title: (route.params as any).archetype,
+          })}
+        />
+      </Stack.Navigator>
+    );
+  }
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -237,18 +271,9 @@ export default function App(): JSX.Element {
             })}
           />
           <Drawer.Screen
-            name={"LoreScreen"}
-            component={LoreScreen}
-            options={{
-              header: ({ navigation, route, options }) =>
-                getNavHeader(navigation, route, options, true),
-              headerTintColor: "#fff",
-              headerTitleStyle: {
-                fontFamily: "Eskapade",
-                fontSize: 32,
-              },
-              title: "Lore",
-            }}
+            name={"LoreStack"}
+            component={LoreStack}
+            options={{ headerShown: false }}
           />
           <Drawer.Screen
             name="AssetStack"

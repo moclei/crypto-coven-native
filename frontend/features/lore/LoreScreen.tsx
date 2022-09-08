@@ -1,7 +1,10 @@
-import React from "react";
-import styled from "styled-components/native";
+import React, { useRef, useState } from "react";
+import { TouchableOpacity } from "react-native";
+import OutsideView from "react-native-detect-press-outside";
+import styled, { css } from "styled-components/native";
 
 import { WitchArchetype } from "../../../model/types";
+import Dropdown from "../../components/dropdown/Dropdown";
 import ArchetypeGallery from "../../components/galleries/ArchetypeGallery";
 import Body2 from "../../components/typography/Body2";
 import Header2 from "../../components/typography/Header2";
@@ -23,94 +26,203 @@ const StyledContent = styled.ScrollView`
   padding: 0 24px;
 `;
 
+const StyledButton = styled.TouchableOpacity`
+  display: flex;
+  padding: 0 24px;
+  border-radius: 8px;
+  border-color: white;
+  border-width: 1px;
+  width: 260px;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+`;
+
 const StyledHorizontalLine = styled.View`
   height: 1px;
   background-color: lightgray;
   width: 90%;
-  margin: 24px 0;
+  margin: 24px 24px;
 `;
 
 const StyledCenterView = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 12px 0;
 `;
 
-const StyledStartView = styled.View`
+type StyledStartViewProps = {
+  open?: boolean;
+};
+const StyledStartView = styled.View<StyledStartViewProps>`
   display: flex;
   align-items: flex-start;
 `;
 
+const CollapseView = styled.View<StyledStartViewProps>`
+  display: flex;
+  align-items: flex-start;
+  ${(props) =>
+    !props.open &&
+    css`
+      height: 0;
+    `}
+`;
+
 export default function LoreScreen({ navigation }): JSX.Element {
+  const childRef = useRef();
+  /*const [archetypeSelected, setArchetypeSelected] = useState<WitchArchetype>(
+      witchesArr[0]
+  );*/
+  /*const onArchSelect = (typeSelected: WitchArchetype) => {
+    console.debug("typeSelected: ", typeSelected);
+    console.debug(
+      "typeSelected was Enchantress ?: ",
+      typeSelected === WitchArchetype.ENCHANTRESS
+    );
+    if (archetypeSelected === typeSelected) {
+      setArchetypeSelected(null);
+    } else {
+      setArchetypeSelected(typeSelected);
+      ref.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  };*/
+  const witchesArr = Object.values(WitchArchetype).map((w) => {
+    return {
+      containerStyle: {
+        backgroundColor: "#000",
+      },
+      label: w.charAt(0).toUpperCase() + w.substr(1, w.length - 1),
+      labelStyle: {
+        color: "#fff",
+      },
+      value: w,
+    };
+  });
+  const [archetypesOpen, setArchetypesOpen] = useState(false);
+  const [archetypeValue, setArchetypeValue] = useState(witchesArr[0]);
+  const [archetypes, setArchetypes] = useState(witchesArr);
+
+  const handlePressOutside = () => {
+    console.debug("handlePressOutside");
+    if (childRef && childRef.current) {
+      console.debug("handlePressOutside, childRef exists");
+      // @ts-ignore
+      childRef.current.onOutsidePress();
+    }
+  };
+
   return (
-    <StyledContainer>
-      <StyledImageBackground
-        source={require("../../../assets/image/website-full.png")}
-        resizeMode="cover"
-      >
-        <StyledContent>
-          <StyledCenterView>
-            <Header2 color={"white"}>Lore</Header2>
-            <Body2 style={{ textAlign: "center" }}>
-              Before the dead were put to rest, before the wizard kings were
-              cast off thrones of pale bone... before their unassailable walls
-              crumbled to dust, and wonder seeped from the cracks in our skin...
-              there were WITCHES who wove the threads of all things, carefully
-              adjusting each string to tune.
-            </Body2>
-          </StyledCenterView>
-          <StyledHorizontalLine />
-          <StyledStartView>
-            <Body2 style={{ marginBottom: 24 }}>
-              WITCHES live in the in-between. In the space between eyelids, in
-              the spines of books. WITCHES build treasures with toadstools,
-              turmeric bricks, turpentine, twine. They brush their hair with
-              henna for luster and blood for shine.
-            </Body2>
-            <Body2 style={{ marginBottom: 24 }}>
-              WITCHES own the Milky Way. They’re smart with the property market
-              like that. They hold little rocks in the plushness of their hands
-              and haggle them down to get a good deal. They are collectors,
-              curators, equal admirers of rubies and refuse.
-            </Body2>
-            <Body2 style={{ marginBottom: 24 }}>
-              WITCHCRAFT is about intuition. About listening to the quiet, about
-              the freedom to choose and go where one wishes, about maintaining
-              the balance of things.
-            </Body2>
-            <Body2 style={{ marginBottom: 24 }}>
-              A WITCH does not grow in ways you expect; they only grow stranger.
-            </Body2>
-            <Body2 style={{ marginBottom: 24 }}>
-              While no one may own a WITCH, anyone can become one. And when
-              you’re a WITCH, you cannot be bound — may you be naked in your
-              rites until the last of your oppressors are dead.
-            </Body2>
-          </StyledStartView>
-          <StyledHorizontalLine />
-          <StyledStartView>
-            <Header2 color={"white"}>Archetypes of Power</Header2>
-            <Header3 color={"white"}>Enchantress</Header3>
-            <Body2 style={{ marginBottom: 24 }}>
-              An ENCHANTRESS is a being of glamour. Your hand may pass through
-              the waves of their hair, the weight of their cloak, the wonders of
-              their lips. They are simultaneously here, there, anywhere, with
-              power to grasp and feeble minds to conquer. You must move out of
-              an ENCHANTRESS’s way when they walk. You see reality shimmer in
-              and out of being with each click of their heel. They cast you into
-              love so deep with a wave of their arm you do not care they have
-              demolished your city to clear the western view from their tower.
-            </Body2>
-            <Body2 style={{ marginBottom: 24 }}>
-              An ENCHANTRESS beguiles your paramour, charms your enemy, counsels
-              your king. When they wink and their mask slips to reveal the
-              hungry grin beneath, you must have the sense to take it to your
-              grave.
-            </Body2>
-            <ArchetypeGallery archetype={WitchArchetype.ENCHANTRESS} />
-          </StyledStartView>
-        </StyledContent>
-      </StyledImageBackground>
-    </StyledContainer>
+    <OutsideView childRef={childRef} onPressOutside={handlePressOutside}>
+      <StyledContainer>
+        <StyledImageBackground
+          source={require("../../../assets/image/website-full.png")}
+          resizeMode="cover"
+        >
+          <StyledContent>
+            <StyledCenterView>
+              <Header2 color={"white"}>Lore</Header2>
+              <Body2 style={{ textAlign: "center" }}>
+                Before the dead were put to rest, before the wizard kings were
+                cast off thrones of pale bone... before their unassailable walls
+                crumbled to dust, and wonder seeped from the cracks in our
+                skin... there were WITCHES who wove the threads of all things,
+                carefully adjusting each string to tune.
+              </Body2>
+            </StyledCenterView>
+            <StyledHorizontalLine />
+            <StyledStartView>
+              <Body2 style={{ marginBottom: 24 }}>
+                WITCHES live in the in-between. In the space between eyelids, in
+                the spines of books. WITCHES build treasures with toadstools,
+                turmeric bricks, turpentine, twine. They brush their hair with
+                henna for luster and blood for shine.
+              </Body2>
+              <Body2 style={{ marginBottom: 24 }}>
+                WITCHES own the Milky Way. They’re smart with the property
+                market like that. They hold little rocks in the plushness of
+                their hands and haggle them down to get a good deal. They are
+                collectors, curators, equal admirers of rubies and refuse.
+              </Body2>
+              <Body2 style={{ marginBottom: 24 }}>
+                WITCHCRAFT is about intuition. About listening to the quiet,
+                about the freedom to choose and go where one wishes, about
+                maintaining the balance of things.
+              </Body2>
+              <Body2 style={{ marginBottom: 24 }}>
+                A WITCH does not grow in ways you expect; they only grow
+                stranger.
+              </Body2>
+              <Body2 style={{ marginBottom: 24 }}>
+                While no one may own a WITCH, anyone can become one. And when
+                you’re a WITCH, you cannot be bound — may you be naked in your
+                rites until the last of your oppressors are dead.
+              </Body2>
+            </StyledStartView>
+            <StyledHorizontalLine />
+            <StyledStartView>
+              <Header2 color={"white"}>Archetypes of Power</Header2>
+            </StyledStartView>
+            <StyledCenterView>
+              <StyledButton
+                onPress={() =>
+                  navigation.navigate("ArchetypeView", {
+                    archetype: WitchArchetype.ENCHANTRESS,
+                  })
+                }
+              >
+                <Header3 color={"white"}>Enchantress</Header3>
+              </StyledButton>
+              <StyledButton
+                onPress={() =>
+                  navigation.navigate("ArchetypeView", {
+                    archetype: WitchArchetype.MAGE,
+                  })
+                }
+              >
+                <Header3 color={"white"}>Mage</Header3>
+              </StyledButton>
+              <StyledButton
+                onPress={() =>
+                  navigation.navigate("ArchetypeView", {
+                    archetype: WitchArchetype.SEER,
+                  })
+                }
+              >
+                <Header3 color={"white"}>Seer</Header3>
+              </StyledButton>
+              <StyledButton
+                onPress={() =>
+                  navigation.navigate("ArchetypeView", {
+                    archetype: WitchArchetype.OCCULTIST,
+                  })
+                }
+              >
+                <Header3 color={"white"}>Occultist</Header3>
+              </StyledButton>
+              <StyledButton
+                onPress={() =>
+                  navigation.navigate("ArchetypeView", {
+                    archetype: WitchArchetype.NECROMANCER,
+                  })
+                }
+              >
+                <Header3 color={"white"}>Necromancer</Header3>
+              </StyledButton>
+              <StyledButton
+                onPress={() =>
+                  navigation.navigate("ArchetypeView", {
+                    archetype: WitchArchetype.HAG,
+                  })
+                }
+              >
+                <Header3 color={"white"}>Hag</Header3>
+              </StyledButton>
+            </StyledCenterView>
+          </StyledContent>
+        </StyledImageBackground>
+      </StyledContainer>
+    </OutsideView>
   );
 }
