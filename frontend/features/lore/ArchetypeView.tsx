@@ -146,7 +146,6 @@ export default function ArchetypeView({
 }: ArchetypeViewProps): JSX.Element {
   const route = useRoute<RouteProp<RootStackParamList, "ArchetypeView">>();
   const archetype = useMemo(() => {
-    console.debug("Got archetype from route.params: ", route.params.archetype);
     return route.params.archetype;
   }, [route]);
 

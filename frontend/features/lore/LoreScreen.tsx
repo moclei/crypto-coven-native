@@ -72,22 +72,6 @@ const CollapseView = styled.View<StyledStartViewProps>`
 
 export default function LoreScreen({ navigation }): JSX.Element {
   const childRef = useRef();
-  /*const [archetypeSelected, setArchetypeSelected] = useState<WitchArchetype>(
-      witchesArr[0]
-  );*/
-  /*const onArchSelect = (typeSelected: WitchArchetype) => {
-    console.debug("typeSelected: ", typeSelected);
-    console.debug(
-      "typeSelected was Enchantress ?: ",
-      typeSelected === WitchArchetype.ENCHANTRESS
-    );
-    if (archetypeSelected === typeSelected) {
-      setArchetypeSelected(null);
-    } else {
-      setArchetypeSelected(typeSelected);
-      ref.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  };*/
   const witchesArr = Object.values(WitchArchetype).map((w) => {
     return {
       containerStyle: {
@@ -100,14 +84,9 @@ export default function LoreScreen({ navigation }): JSX.Element {
       value: w,
     };
   });
-  const [archetypesOpen, setArchetypesOpen] = useState(false);
-  const [archetypeValue, setArchetypeValue] = useState(witchesArr[0]);
-  const [archetypes, setArchetypes] = useState(witchesArr);
 
   const handlePressOutside = () => {
-    console.debug("handlePressOutside");
     if (childRef && childRef.current) {
-      console.debug("handlePressOutside, childRef exists");
       // @ts-ignore
       childRef.current.onOutsidePress();
     }

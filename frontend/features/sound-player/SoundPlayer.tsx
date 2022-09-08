@@ -18,11 +18,9 @@ type StyledSoundPlayerProps = {
 };
 const StyledSoundPlayer = styled.View<StyledSoundPlayerProps>`
   align-items: center;
-  /*box-sizing: border-box;*/
   color: white;
   display: flex;
   flex-direction: row;
-  /*font-family: "Inconsolata", "Times New Roman", sans-serif;*/
   justify-content: space-between;
   padding: 20px 16px;
   width: 100%;
@@ -45,7 +43,6 @@ const PauseIcon = styled(PauseSvg)`
 `;
 
 const PlayPause = styled.TouchableOpacity`
-  /*cursor: pointer;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,8 +54,6 @@ const PlayerDetails = styled.View`
 `;
 
 const LogoSpan = styled.Text`
-  /*display: block;*/
-  /*font-family: "gothicus-roman", "Gothicus Roman", "Inconsolata", sans-serif;*/
   font-size: 18px;
   letter-spacing: 2px;
   margin-bottom: 4px;
@@ -83,17 +78,6 @@ export const SoundPlayer = ({
     Inconsolata_400Regular,
   });
 
-  /*  useEffect(() => {
-    console.debug("creating setInterval");
-    const interval = setInterval(() => {
-      console.debug(
-        "setTrackProgress audioControl.positionMillis: ",
-        audioControl?.positionMillis || "no audiControl yet"
-      );
-      setTrackProgress(audioControl?.positionMillis || 0);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);*/
   useEffect(() => {
     setTrackProgress(audioControl?.positionMillis || 0);
   }, [audioControl]);
@@ -136,7 +120,6 @@ export const SoundPlayer = ({
             style={{
               backgroundColor: standalone ? standaloneAccentColor : accentColor,
               height: "100%",
-              /*transition: "width 1s linear",*/
               width: `${Math.round(
                 (trackProgress / (audioControl.durationMillis || 64)) * 100
               )}%`,

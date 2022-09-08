@@ -58,11 +58,6 @@ export type LandingNavProps = NativeStackScreenProps<
   "Landing"
 >;
 
-/*export type AssetViewRouteProps = RouteProp<RootStackParamList, "AssetView">;
-export type AssetListRouteProps = RouteProp<RootStackParamList, "AssetList">;
-export type ShellViewRouteProps = RouteProp<RootStackParamList, "ShellView">;
-export type LandingRouteProps = RouteProp<RootStackParamList, "Landing">;*/
-
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
     Eskapade: require("../assets/fonts/Eskapade-Fraktur.ttf"),

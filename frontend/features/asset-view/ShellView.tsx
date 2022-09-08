@@ -84,7 +84,6 @@ export default function ShellView({
     } catch (error) {
       console.log("Error loading audio, error: ", error);
     }
-    console.debug("loadAsync called");
     return () => {
       /*isUnmounting = true;*/
       sound.unloadAsync().then(() => console.log("unloaded audio"));

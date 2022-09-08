@@ -57,7 +57,6 @@ const Dropdown = ({ items, label, selected = null }: DropdownProps, ref) => {
   const boxHeight = useSharedValue(0);
   const onPress = useCallback(
     (event: GestureResponderEvent) => {
-      console.debug("onPress");
       setIsOpen(!isOpen);
       toggleHeight();
     },
@@ -66,7 +65,6 @@ const Dropdown = ({ items, label, selected = null }: DropdownProps, ref) => {
   useImperativeHandle(ref, () => ({
     // methods connected to `ref`
     onOutsidePress: () => {
-      console.debug("inside onOutsidePress");
       if (isOpen) {
         onPress(null);
       }
@@ -94,7 +92,6 @@ const Dropdown = ({ items, label, selected = null }: DropdownProps, ref) => {
   };
 
   const onItemSelect = useCallback((selected: ItemSelect) => {
-    console.debug("onItemSelect");
     setSelectedItem(selected);
   }, []);
 
