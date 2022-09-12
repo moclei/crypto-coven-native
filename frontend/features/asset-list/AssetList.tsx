@@ -29,9 +29,9 @@ export default function AssetList(): JSX.Element {
   const { witches, shell } = route.params;
   const renderItem = ({ item, index }) => {
     if (item.collection.slug === "sirens-shell") {
-      return <ShellListItem data={shell} key={shell.id} index={index} />;
+      return <ShellListItem data={shell} index={index} />;
     }
-    return <AssetListItem data={item} key={item.id} index={index} />;
+    return <AssetListItem data={item} index={index} />;
   };
   return (
     <StyledAssetList>

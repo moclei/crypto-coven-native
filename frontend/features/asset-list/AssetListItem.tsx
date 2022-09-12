@@ -42,13 +42,11 @@ const StyledTextContainer = styled.View`
 interface AssetItemListProps {
   data: CovenAsset;
   index: number;
-  key: number;
 }
 
 type AssetListProps = NativeStackScreenProps<RootStackParamList, "AssetList">;
 export default function AssetListItem({
   data,
-  key,
   index,
 }: AssetItemListProps): JSX.Element {
   const navigation = useNavigation<AssetListProps["navigation"]>();

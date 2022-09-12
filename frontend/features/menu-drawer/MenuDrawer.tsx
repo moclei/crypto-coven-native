@@ -25,7 +25,7 @@ export default function MenuDrawer({ navigation, witches, shells }) {
     });
   };
   const onCreatorsPress = () => {
-    console.debug("onCreatorsPress");
+    navigation.navigate("LoreStack");
   };
 
   return (
@@ -44,7 +44,7 @@ export default function MenuDrawer({ navigation, witches, shells }) {
       </TouchableOpacity>
       <TouchableOpacity onPress={onCreatorsPress}>
         <Subtitle style={{ color: "#FFF" }} opacity={0.5}>
-          Creators
+          Lore
         </Subtitle>
       </TouchableOpacity>
     </StyledMenuContainer>

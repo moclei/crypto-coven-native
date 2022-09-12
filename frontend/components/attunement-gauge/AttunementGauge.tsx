@@ -32,12 +32,6 @@ const StyledGaugeFill = styled.View<GaugeFillProps>`
   width: ${(props) => 100 / (6 / Math.min(props.value, 6)) + "%"};
 `;
 
-/* animation for gauge values
- transition: width 0.5s ease-out 0s;
-  animation-name: attunementBarIntroAnimation;
-  animation-duration: 1.5s;
-  transform-origin: left top;
- */
 interface Body1Props {
   name: string;
   value: number;
