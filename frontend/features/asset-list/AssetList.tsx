@@ -1,4 +1,5 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { FlatList } from "react-native";
 import styled from "styled-components/native";
@@ -46,6 +47,11 @@ export default function AssetList(): JSX.Element {
           keyExtractor={(item) => item.id}
         />
       </StyledImageBackground>
+      {/*     <StatusBar
+        backgroundColor="transparent"
+        style={"light"}
+        translucent={true}
+      />*/}
     </StyledAssetList>
   );
 }

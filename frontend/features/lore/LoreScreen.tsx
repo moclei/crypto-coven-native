@@ -1,11 +1,9 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState } from "react";
-import { TouchableOpacity } from "react-native";
 import OutsideView from "react-native-detect-press-outside";
 import styled, { css } from "styled-components/native";
 
 import { WitchArchetype } from "../../../model/types";
-import Dropdown from "../../components/dropdown/Dropdown";
-import ArchetypeGallery from "../../components/galleries/ArchetypeGallery";
 import Body2 from "../../components/typography/Body2";
 import Header2 from "../../components/typography/Header2";
 import Header3 from "../../components/typography/Header3";
@@ -202,6 +200,11 @@ export default function LoreScreen({ navigation }): JSX.Element {
           </StyledContent>
         </StyledImageBackground>
       </StyledContainer>
+      {/*<StatusBar
+        backgroundColor="transparent"
+        style={"light"}
+        translucent={true}
+      />*/}
     </OutsideView>
   );
 }

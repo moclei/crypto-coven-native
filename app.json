@@ -17,10 +17,19 @@
           "data": [
             {
               "scheme": "wc"
-            },
-          ],
+            }
+          ]
         }
       ]
+    },
+
+    "extra": {
+      "eas": {
+        "projectId": "9401bd2b-379c-4c11-b33f-6b9e66bab726"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.moclei.cryptocovennative"
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Audio, AVPlaybackStatus } from "expo-av";
 import { Sound } from "expo-av/build/Audio/Sound";
+import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, View } from "react-native";
 import styled from "styled-components/native";
@@ -135,6 +136,11 @@ export default function ShellView({
           />
         )}
       </View>
+      {/*<StatusBar
+        backgroundColor="transparent"
+        style={"light"}
+        translucent={true}
+      />*/}
     </StyledImageBackground>
   );
 }
