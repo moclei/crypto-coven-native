@@ -1,20 +1,14 @@
 import { useRoute } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect, useMemo } from "react";
+import { StatusBar } from "expo-status-bar";
+import React, { useMemo } from "react";
 import styled from "styled-components/native";
 
-import { CovenAsset } from "../../../model/types";
 import { capitalizeFirst, getTrait } from "../../../util/helpers";
 import { RootStackParamList } from "../../App";
 import AttunementGauge from "../../components/attunement-gauge/AttunementGauge";
-import Body1 from "../../components/typography/Body1";
 import Body2 from "../../components/typography/Body2";
 import Overline from "../../components/typography/Overline";
-
-interface StyledItemProps {
-  index: number;
-}
 
 const StyledScrollView = styled.ScrollView`
   width: 100%;
@@ -49,14 +43,10 @@ const AttunementsContainer = styled.View`
 `;
 
 interface AssetViewProps {
-  data: CovenAsset;
   index: number;
 }
 
-export default function AssetView({
-  data,
-  index,
-}: AssetViewProps): JSX.Element {
+export default function AssetView({ index }: AssetViewProps): JSX.Element {
   const route = useRoute<RouteProp<RootStackParamList, "AssetView">>();
   const asset = useMemo(() => {
     return route.params.asset;
@@ -122,6 +112,11 @@ export default function AssetView({
           <AttunementGauge name={"woe"} value={woe} />
         </AttunementsContainer>
       </StyledScrollView>
+      {/* <StatusBar
+        backgroundColor="transparent"
+        style={"light"}
+        translucent={true}
+      />*/}
     </StyledImageBackground>
   );
 }

@@ -17,6 +17,7 @@ const StyledContainer = styled.View`
 type StyledButtonProps = {
   opacity: number;
   size: number;
+  dark: boolean;
 };
 const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
   display: flex;
@@ -27,12 +28,12 @@ const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
   padding: 8px 16px;
   margin: 0 16px;
   background-color: transparent;
-  color: rgb(30, 33, 37);
-  border: 1px solid rgb(30, 33, 37);
-  opacity: 1;
+  opacity:  ${(props) => (props.dark ? 0.5 : 1)};
   width: 136px;
   border-radius: 8px;
-
+  border-color: ${(props) => (props.dark ? "white" : "rgb(30, 33, 37)")}
+  border-width: 1px;
+  color: ${(props) => (props.dark ? "white" : "rgb(30, 33, 37)")}
   font-weight: 600;
   font-size: 12px;
   line-height: 12px;
@@ -44,30 +45,38 @@ type ButtonProps = {
   onConnectPress: () => void;
   isLoading: boolean;
   isConnected: boolean;
+  dark?: boolean;
+  opacity?: number;
 };
 
 export default function ConnectWalletButton({
   isConnected,
   isLoading,
   onConnectPress,
+  dark = false,
 }: ButtonProps): JSX.Element {
   const [fontsLoaded] = useFonts({
     Inconsolata_600SemiBold,
   });
   return (
     <StyledContainer>
-      <StyledButton onPress={onConnectPress}>
+      <StyledButton
+        onPress={onConnectPress}
+        dark={dark}
+        opacity={dark ? 0.5 : 1}
+      >
         <Text
           style={{
-            color: "black",
+            color: dark ? "white" : "rgb(30, 33, 37)",
             fontFamily: "Inconsolata_600SemiBold",
+            opacity: dark ? 0.5 : 1,
             textTransform: "uppercase",
           }}
         >
           {isLoading
             ? "Loading..."
             : isConnected
-            ? "Connected"
+            ? "Disconnect"
             : "Connect Wallet"}
         </Text>
       </StyledButton>

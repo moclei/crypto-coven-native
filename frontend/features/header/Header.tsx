@@ -12,10 +12,10 @@ type StyledContainerProps = {
   dark: boolean;
 };
 const StyledContainer = styled.View`
-  height: 68px;
+  height: 80px;
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   padding: 0 16px;
   margin: 0;

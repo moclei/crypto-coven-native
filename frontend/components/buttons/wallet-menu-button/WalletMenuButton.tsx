@@ -12,7 +12,7 @@ import { RootStackParamList } from "../../../App";
 import MenuExpandIcon from "../../icons/MenuExpandIcon";
 
 const StyledContainer = styled.View`
-  height: 68px;
+  height: 80px;
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -46,7 +46,6 @@ const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
   opacity: 1;
   width: 136px;
   border-radius: 8px;
-
   font-weight: 600;
   font-size: 12px;
   line-height: 12px;
