@@ -29,20 +29,13 @@ export default function Overline({
   color,
   opacity,
 }: OverlineProps): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Inconsolata_800ExtraBold,
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <StyledBody1
-        color={color}
-        opacity={opacity}
-        style={[{ fontFamily: "Inconsolata_800ExtraBold" }, style]}
-      >
-        {children}
-      </StyledBody1>
-    );
-  }
+  return (
+    <StyledBody1
+      color={color}
+      opacity={opacity}
+      style={[{ fontFamily: "Inconsolata_800ExtraBold" }, style]}
+    >
+      {children}
+    </StyledBody1>
+  );
 }

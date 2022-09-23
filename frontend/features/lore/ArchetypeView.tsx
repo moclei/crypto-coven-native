@@ -178,11 +178,6 @@ export default function ArchetypeView({
         {getArchetypeDesc(archetype)}
         <ArchetypeGallery archetype={archetype} />
       </StyledScrollView>
-      {/*<StatusBar
-        backgroundColor="transparent"
-        style={"light"}
-        translucent={true}
-      />*/}
     </StyledImageBackground>
   );
 }

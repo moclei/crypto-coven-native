@@ -20,6 +20,7 @@ import {
 } from "@react-navigation/native-stack";
 import { StatusBar, StatusBarStyle } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
 
 import { CovenAsset, WitchArchetype } from "../model/types";
 
@@ -65,6 +66,7 @@ export type LandingNavProps = NativeStackScreenProps<
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
     Eskapade: require("../assets/fonts/Eskapade-Fraktur.ttf"),
+    Gothicus: require("../assets/fonts/Gothicus-Roman.ttf"),
     Inconsolata_200ExtraLight,
     Inconsolata_300Light,
     Inconsolata_400Regular,
@@ -81,6 +83,7 @@ export default function App(): JSX.Element {
     account,
     connectWallet,
     connected,
+    guestMode,
     loading,
     shells,
     witches,
@@ -106,6 +109,7 @@ export default function App(): JSX.Element {
       <Header
         isLoading={loading}
         isConnected={connected}
+        isGuestMode={guestMode}
         walletAddress={account || ""}
         onConnectPress={connectWallet}
         navigation={navigation}
@@ -200,7 +204,7 @@ export default function App(): JSX.Element {
     return <AppLoading />;
   } else {
     return (
-      <>
+      <SafeAreaProvider>
         <NavigationContainer ref={navigationRef}>
           <Drawer.Navigator
             screenOptions={{
@@ -216,6 +220,7 @@ export default function App(): JSX.Element {
                 witches={witches}
                 shell={shells}
                 isLoading={loading}
+                isGuestMode={guestMode}
                 isConnected={connected}
                 onConnectPress={connectWallet}
               />
@@ -253,7 +258,7 @@ export default function App(): JSX.Element {
           style={statusBarStyle}
           translucent={true}
         />
-      </>
+      </SafeAreaProvider>
     );
   }
 }

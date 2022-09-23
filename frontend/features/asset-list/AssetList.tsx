@@ -1,6 +1,6 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useMemo } from "react";
 import { FlatList } from "react-native";
 import styled from "styled-components/native";
 
@@ -22,12 +22,15 @@ const StyledAssetList = styled.SafeAreaView`
 
 const StyledImageBackground = styled.ImageBackground`
   flex: 1;
-  padding-top: 24px;
 `;
 
 export default function AssetList(): JSX.Element {
   const route = useRoute<RouteProp<RootStackParamList, "AssetList">>();
   const { witches, shell } = route.params;
+  const assetsData = useMemo(() => {
+    const witchData = witches ? witches : [];
+    return [...witchData, shell || null];
+  }, [witches, shell]);
   const renderItem = ({ item, index }) => {
     if (item.collection.slug === "sirens-shell") {
       return <ShellListItem data={shell} index={index} />;
@@ -40,12 +43,14 @@ export default function AssetList(): JSX.Element {
         source={require("../../../assets/image/website-full.png")}
         resizeMode="cover"
       >
-        <FlatList
-          data={[...witches, shell]}
-          numColumns={2}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
+        {assetsData && (
+          <FlatList
+            data={[...witches, shell]}
+            numColumns={2}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+        )}
       </StyledImageBackground>
       {/*     <StatusBar
         backgroundColor="transparent"

@@ -7,7 +7,6 @@ import { Text } from "react-native";
 import styled from "styled-components/native";
 
 const StyledContainer = styled.View`
-  height: 68px;
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -25,7 +24,7 @@ const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
   align-items: center;
   justify-content: center;
   height: 36px;
-  padding: 8px 16px;
+  padding: 0 16px;
   margin: 0 16px;
   background-color: transparent;
   opacity:  ${(props) => (props.dark ? 0.5 : 1)};

@@ -1,8 +1,3 @@
-import {
-  Inconsolata_600SemiBold,
-  useFonts,
-} from "@expo-google-fonts/inconsolata";
-import { useNavigation } from "@react-navigation/core";
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import React from "react";
 import { Text } from "react-native";
@@ -12,7 +7,6 @@ import { RootStackParamList } from "../../../App";
 import MenuExpandIcon from "../../icons/MenuExpandIcon";
 
 const StyledContainer = styled.View`
-  height: 80px;
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -37,14 +31,13 @@ const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
   align-items: center;
   justify-content: center;
   height: 36px;
-  padding: 8px 16px;
+  padding: 0 16px;
   margin: 0 16px;
   background-color: transparent;
   color: rgb(30, 33, 37);
   border-width: 1px;
   border-color: ${(props) => (props.dark ? "white" : "rgb(30, 33, 37)")}
   opacity: 1;
-  width: 136px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 12px;
@@ -55,19 +48,17 @@ const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
 
 type ButtonProps = {
   walletAddress: string;
+  isGuestMode: boolean;
   navigation?: any;
   dark: boolean;
 };
 type DrawerProps = DrawerScreenProps<RootStackParamList, "Menu">;
 export default function WalletMenuButton({
   walletAddress,
+  isGuestMode,
   navigation,
   dark,
 }: ButtonProps): JSX.Element {
-  // const navigation = useNavigation<DrawerProps["navigation"]>();
-  const [fontsLoaded] = useFonts({
-    Inconsolata_600SemiBold,
-  });
   const onMenuPress = () => {
     navigation.toggleDrawer();
   };
@@ -81,12 +72,14 @@ export default function WalletMenuButton({
             textTransform: "uppercase",
           }}
         >
-          {walletAddress.substr(0, 4) +
-            "...." +
-            walletAddress.substr(
-              walletAddress.length - 4,
-              walletAddress.length - 1
-            )}
+          {isGuestMode
+            ? "Menu"
+            : walletAddress.substr(0, 4) +
+              "...." +
+              walletAddress.substr(
+                walletAddress.length - 4,
+                walletAddress.length - 1
+              )}
         </Text>
         <VerticalLine dark={dark} />
         <MenuExpandIcon color={dark ? "white" : "black"} />
