@@ -2,9 +2,9 @@ import {
   Inconsolata_400Regular,
   useFonts,
 } from "@expo-google-fonts/inconsolata";
+import AppLoading from "expo-app-loading";
 import React, { ReactNode } from "react";
 import styled from "styled-components/native";
-import AppLoading from "expo-app-loading";
 
 type StyledBodyProps = {
   color: string;
@@ -28,20 +28,13 @@ export default function Body1({
   color,
   opacity,
 }: Body1Props): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Inconsolata_400Regular,
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <StyledBody1
-        color={color}
-        opacity={opacity}
-        style={[{ fontFamily: "Inconsolata_400Regular" }, style]}
-      >
-        {children}
-      </StyledBody1>
-    );
-  }
+  return (
+    <StyledBody1
+      color={color}
+      opacity={opacity}
+      style={[{ fontFamily: "Inconsolata_400Regular" }, style]}
+    >
+      {children}
+    </StyledBody1>
+  );
 }

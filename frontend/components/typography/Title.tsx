@@ -29,20 +29,13 @@ export default function Title({
   color,
   opacity,
 }: TitleProps): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Gothicus: require("../../../assets/fonts/Gothicus-Roman.ttf"),
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <StyledTitle
-        color={color}
-        opacity={opacity}
-        style={[{ fontFamily: "Gothicus" }, style]}
-      >
-        {children}
-      </StyledTitle>
-    );
-  }
+  return (
+    <StyledTitle
+      color={color}
+      opacity={opacity}
+      style={[{ fontFamily: "Gothicus" }, style]}
+    >
+      {children}
+    </StyledTitle>
+  );
 }

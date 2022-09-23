@@ -20,6 +20,7 @@ type MenuDrawerProps = {
   witches: CovenAsset[];
   shell: CovenAsset;
   isConnected: boolean;
+  isGuestMode: boolean;
   isLoading: boolean;
   onConnectPress: () => void;
 };
@@ -28,6 +29,7 @@ export default function MenuDrawer({
   witches,
   shell,
   isConnected,
+  isGuestMode,
   isLoading,
   onConnectPress,
 }: MenuDrawerProps) {
@@ -55,11 +57,13 @@ export default function MenuDrawer({
           Home
         </Subtitle>
       </TouchableOpacity>
-      <TouchableOpacity onPress={onWitchesPress}>
-        <Subtitle color={"#FFF"} opacity={0.5}>
-          Witches
-        </Subtitle>
-      </TouchableOpacity>
+      {!isGuestMode && (
+        <TouchableOpacity onPress={onWitchesPress}>
+          <Subtitle color={"#FFF"} opacity={0.5}>
+            Witches
+          </Subtitle>
+        </TouchableOpacity>
+      )}
       <TouchableOpacity onPress={onCreatorsPress}>
         <Subtitle color={"#FFF"} opacity={0.5}>
           Lore

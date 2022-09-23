@@ -30,20 +30,13 @@ export default function Body2({
   color,
   opacity,
 }: Body2Props): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Inconsolata_400Regular,
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <StyledBody2
-        color={color}
-        opacity={opacity}
-        style={[{ fontFamily: "Inconsolata_400Regular" }, style]}
-      >
-        {children}
-      </StyledBody2>
-    );
-  }
+  return (
+    <StyledBody2
+      color={color}
+      opacity={opacity}
+      style={[{ fontFamily: "Inconsolata_400Regular" }, style]}
+    >
+      {children}
+    </StyledBody2>
+  );
 }

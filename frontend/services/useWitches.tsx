@@ -1,8 +1,6 @@
 import { useWalletConnect } from "@walletconnect/react-native-dapp";
 import React, { useCallback, useEffect, useState } from "react";
 
-import { CovenAsset } from "../../model/types";
-
 type WitchHookProps = {
   navigation: any;
 };
@@ -10,6 +8,7 @@ export default function useWitches({ navigation }: WitchHookProps) {
   const connector = useWalletConnect();
   const [loading, setLoading] = useState(false);
   const [connected, setConnected] = useState(false);
+  const [guestMode, setGuestMode] = useState(false);
   const [account, setAccount] = useState(null);
   const [witches, setWitches] = useState(null);
   const [shells, setShells] = useState(null);
@@ -49,7 +48,15 @@ export default function useWitches({ navigation }: WitchHookProps) {
       navigation.navigate("Landing");
     } else {
       setLoading(true);
-      connector.connect();
+      connector.connect().catch((e) => {
+        if (e.message === "User close QRCode Modal") {
+          console.debug(
+            "connectWallet, user closed connect modal, setting guest mode."
+          );
+          setLoading(false);
+          setGuestMode(true);
+        }
+      });
     }
   }, [connector, connected, navigation]);
   const killSession = React.useCallback(() => {
@@ -72,13 +79,7 @@ export default function useWitches({ navigation }: WitchHookProps) {
         }
       );
       const json = await response.json();
-      const witchAssets = json.assets.filter(
-        (a: CovenAsset) => a.collection.slug === "cryptocoven"
-      );
-      const shellAssets = json.assets.filter(
-        (a: CovenAsset) => a.collection.slug === "sirens-shell"
-      );
-      return { shell: shellAssets, witches: witchAssets };
+      return { shell: json.shell.assets, witches: json.witches.assets };
     } catch (error) {
       console.error("CryptoCoven error: ", error);
     }
@@ -88,6 +89,7 @@ export default function useWitches({ navigation }: WitchHookProps) {
     account,
     connectWallet,
     connected,
+    guestMode,
     killSession,
     loading,
     shells,

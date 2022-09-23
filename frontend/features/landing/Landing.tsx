@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import styled from "styled-components/native";
 
@@ -17,10 +16,3 @@ export default function Landing(): JSX.Element {
     </StyledApp>
   );
 }
-/*
-from app.json
- "androidStatusBar": {
-      "backgroundColor": "#00000000",
-      "hidden": true
-    },
- */

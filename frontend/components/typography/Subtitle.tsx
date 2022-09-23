@@ -31,20 +31,13 @@ export default function Subtitle({
   color,
   opacity,
 }: TitleProps): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Inconsolata_400Regular,
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <StyledSubtitle
-        color={color}
-        opacity={opacity}
-        style={[{ fontFamily: "Inconsolata_400Regular" }, style]}
-      >
-        {children}
-      </StyledSubtitle>
-    );
-  }
+  return (
+    <StyledSubtitle
+      color={color}
+      opacity={opacity}
+      style={[{ fontFamily: "Inconsolata_400Regular" }, style]}
+    >
+      {children}
+    </StyledSubtitle>
+  );
 }

@@ -29,20 +29,13 @@ export default function Header2({
   opacity,
   padding,
 }: Header2Props): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Eskapade: require("../../../assets/fonts/Eskapade-Fraktur.ttf"),
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <StyledHeader2
-        color={color}
-        opacity={opacity}
-        style={[{ fontFamily: "Eskapade" }, style]}
-      >
-        {children}
-      </StyledHeader2>
-    );
-  }
+  return (
+    <StyledHeader2
+      color={color}
+      opacity={opacity}
+      style={[{ fontFamily: "Eskapade" }, style]}
+    >
+      {children}
+    </StyledHeader2>
+  );
 }

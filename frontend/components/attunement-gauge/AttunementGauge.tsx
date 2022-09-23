@@ -3,6 +3,8 @@ import styled from "styled-components/native";
 
 import Overline from "../typography/Overline";
 
+const MAX_ATTUNEMENT = 9;
+
 const StyledGaugeContainer = styled.View`
   width: 100%;
   height: 49px;
@@ -29,7 +31,8 @@ const StyledGaugeFill = styled.View<GaugeFillProps>`
   height: 8px;
   border-radius: 22px;
   background-color: rgb(224, 175, 132);
-  width: ${(props) => 100 / (6 / Math.min(props.value, 6)) + "%"};
+  width: ${(props) =>
+    100 / (MAX_ATTUNEMENT / Math.min(props.value, MAX_ATTUNEMENT)) + "%"};
 `;
 
 interface Body1Props {
@@ -44,7 +47,7 @@ export default function AttunementGauge({
     <StyledGaugeContainer>
       <GaugeTitleContainer>
         <Overline style={{ paddingRight: 4 }}>{name}</Overline>
-        <Overline opacity={0.5}>{Math.min(value, 6)}/6</Overline>
+        <Overline opacity={0.5}>{value + "/" + MAX_ATTUNEMENT}</Overline>
       </GaugeTitleContainer>
       <StyledGaugeBox>
         <StyledGaugeFill value={value} />
