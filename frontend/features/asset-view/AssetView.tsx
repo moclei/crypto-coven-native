@@ -1,12 +1,13 @@
 import { useRoute } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 
 import { capitalizeFirst, getTrait } from "../../../util/helpers";
 import { RootStackParamList } from "../../App";
 import AttunementGauge from "../../components/attunement-gauge/AttunementGauge";
+import LoadingMoon from "../../components/loading/LoadingMoon";
 import Body2 from "../../components/typography/Body2";
 import Overline from "../../components/typography/Overline";
 
@@ -23,10 +24,14 @@ const StyledImageBackground = styled.ImageBackground`
   padding: 24px;
 `;
 
-const StyledImage = styled.Image`
+type StyledImageProps = {
+  witchVisible: boolean;
+};
+const StyledImage = styled.Image<StyledImageProps>`
   width: 100%;
-  height: 400px;
+  height: ${(props) => (props.witchVisible ? "400px" : "1px")};
   padding: 24px;
+  opacity: ${(props) => (props.witchVisible ? 1 : 0)};
 `;
 
 const StyledTextContainer = styled.View`
@@ -37,8 +42,7 @@ const StyledTextContainer = styled.View`
 `;
 
 const AttunementsContainer = styled.View`
-  padding-top: 20px;
-  height: 298px;
+  padding: 20px 0;
   display: flex;
 `;
 
@@ -48,6 +52,9 @@ interface AssetViewProps {
 
 export default function AssetView({ index }: AssetViewProps): JSX.Element {
   const route = useRoute<RouteProp<RootStackParamList, "AssetView">>();
+  const [witchVisible, setWitchVisible] = useState(false);
+  const windowWidth = Dimensions.get("window").width;
+
   const asset = useMemo(() => {
     return route.params.asset;
   }, [route]);
@@ -86,7 +93,12 @@ export default function AssetView({ index }: AssetViewProps): JSX.Element {
       index={index}
     >
       <StyledScrollView>
-        <StyledImage source={{ uri: asset.image_original_url }} />
+        <StyledImage
+          source={{ uri: asset.image_original_url }}
+          witchVisible={witchVisible}
+          onLoadEnd={() => setWitchVisible(true)}
+        />
+        {!witchVisible && <LoadingMoon diameter={windowWidth - 48} />}
         <StyledTextContainer>
           <Overline>name</Overline>
           <Body2>{capitalizeFirst(asset.name)}</Body2>
