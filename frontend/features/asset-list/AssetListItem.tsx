@@ -1,10 +1,12 @@
 import { useNavigation } from "@react-navigation/core";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 
 import { CovenAsset } from "../../../model/types";
 import { RootStackParamList } from "../../App";
+import LoadingMoon from "../../components/loading/LoadingMoon";
 import Body1 from "../../components/typography/Body1";
 
 interface StyledItemProps {
@@ -23,11 +25,15 @@ const StyledALItem = styled.TouchableOpacity<StyledItemProps>`
     props.index === 0 || props.index % 2 === 0 ? "24px" : "12px"}
 `;
 
-const StyledImage = styled.Image`
+type StyledImageProps = {
+  witchVisible: boolean;
+};
+const StyledImage = styled.Image<StyledImageProps>`
   width: 100%;
-  height: 160px;
+  height: ${(props) => (props.witchVisible ? "160px" : "1px")};
   align-items: center;
   justify-content: center;
+  opacity: ${(props) => (props.witchVisible ? 1 : 0)};
 `;
 
 const StyledTextContainer = styled.View`
@@ -50,14 +56,22 @@ export default function AssetListItem({
   index,
 }: AssetItemListProps): JSX.Element {
   const navigation = useNavigation<AssetListProps["navigation"]>();
+  const [witchVisible, setWitchVisible] = useState(false);
+  const windowWidth = Dimensions.get("window").width;
   const onPress = (asset: CovenAsset) => {
     navigation.navigate("AssetView", {
       asset: asset,
     });
   };
+
   return (
     <StyledALItem index={index} onPress={() => onPress(data)}>
-      <StyledImage source={{ uri: data.image_original_url }} />
+      <StyledImage
+        source={{ uri: data.image_original_url }}
+        witchVisible={witchVisible}
+        onLoadEnd={() => setWitchVisible(true)}
+      />
+      {!witchVisible && <LoadingMoon diameter={windowWidth / 2 - 48} />}
       <StyledTextContainer>
         <Body1>{data.name}</Body1>
       </StyledTextContainer>

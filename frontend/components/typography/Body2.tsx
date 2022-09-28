@@ -1,15 +1,5 @@
-import {
-  Inconsolata_400Regular,
-  useFonts,
-} from "@expo-google-fonts/inconsolata";
-import AppLoading from "expo-app-loading";
 import React, { ReactNode } from "react";
 import styled from "styled-components/native";
-
-type StyledHeader3Props = {
-  color: string;
-  opacity: number;
-};
 
 const StyledBody2 = styled.Text`
   font-size: 16px;
