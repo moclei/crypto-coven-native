@@ -29,56 +29,56 @@ const StyledImageBox = styled.Image<ImageBoxProps>`
 `;
 
 const seers = [
-  require("../../../assets/image/lore/seer1.png"),
-  require("../../../assets/image/lore/seer2.png"),
-  require("../../../assets/image/lore/seer3.png"),
-  require("../../../assets/image/lore/seer4.png"),
-  require("../../../assets/image/lore/seer5.png"),
-  require("../../../assets/image/lore/seer6.png"),
+  require("../../../assets/images/lore/seer1.png"),
+  require("../../../assets/images/lore/seer2.png"),
+  require("../../../assets/images/lore/seer3.png"),
+  require("../../../assets/images/lore/seer4.png"),
+  require("../../../assets/images/lore/seer5.png"),
+  require("../../../assets/images/lore/seer6.png"),
 ];
 
 const enchantresses = [
-  require("../../../assets/image/lore/enchantress1.png"),
-  require("../../../assets/image/lore/enchantress2.png"),
-  require("../../../assets/image/lore/enchantress3.png"),
-  require("../../../assets/image/lore/enchantress4.png"),
-  require("../../../assets/image/lore/enchantress5.png"),
-  require("../../../assets/image/lore/enchantress6.png"),
+  require("../../../assets/images/lore/enchantress1.png"),
+  require("../../../assets/images/lore/enchantress2.png"),
+  require("../../../assets/images/lore/enchantress3.png"),
+  require("../../../assets/images/lore/enchantress4.png"),
+  require("../../../assets/images/lore/enchantress5.png"),
+  require("../../../assets/images/lore/enchantress6.png"),
 ];
 
 const mages = [
-  require("../../../assets/image/lore/mage1.png"),
-  require("../../../assets/image/lore/mage2.png"),
-  require("../../../assets/image/lore/mage3.png"),
-  require("../../../assets/image/lore/mage4.png"),
-  require("../../../assets/image/lore/mage5.png"),
-  require("../../../assets/image/lore/mage6.png"),
+  require("../../../assets/images/lore/mage1.png"),
+  require("../../../assets/images/lore/mage2.png"),
+  require("../../../assets/images/lore/mage3.png"),
+  require("../../../assets/images/lore/mage4.png"),
+  require("../../../assets/images/lore/mage5.png"),
+  require("../../../assets/images/lore/mage6.png"),
 ];
 
 const hags = [
-  require("../../../assets/image/lore/hag1.png"),
-  require("../../../assets/image/lore/hag2.png"),
-  require("../../../assets/image/lore/hag3.png"),
-  require("../../../assets/image/lore/hag4.png"),
-  require("../../../assets/image/lore/hag5.png"),
-  require("../../../assets/image/lore/hag6.png"),
+  require("../../../assets/images/lore/hag1.png"),
+  require("../../../assets/images/lore/hag2.png"),
+  require("../../../assets/images/lore/hag3.png"),
+  require("../../../assets/images/lore/hag4.png"),
+  require("../../../assets/images/lore/hag5.png"),
+  require("../../../assets/images/lore/hag6.png"),
 ];
 
 const occultists = [
-  require("../../../assets/image/lore/occultist1.png"),
-  require("../../../assets/image/lore/occultist2.png"),
-  require("../../../assets/image/lore/occultist3.png"),
-  require("../../../assets/image/lore/occultist4.png"),
-  require("../../../assets/image/lore/occultist5.png"),
-  require("../../../assets/image/lore/occultist6.png"),
+  require("../../../assets/images/lore/occultist1.png"),
+  require("../../../assets/images/lore/occultist2.png"),
+  require("../../../assets/images/lore/occultist3.png"),
+  require("../../../assets/images/lore/occultist4.png"),
+  require("../../../assets/images/lore/occultist5.png"),
+  require("../../../assets/images/lore/occultist6.png"),
 ];
 const necromancers = [
-  require("../../../assets/image/lore/necromancer1.png"),
-  require("../../../assets/image/lore/necromancer2.png"),
-  require("../../../assets/image/lore/necromancer3.png"),
-  require("../../../assets/image/lore/necromancer4.png"),
-  require("../../../assets/image/lore/necromancer5.png"),
-  require("../../../assets/image/lore/necromancer6.png"),
+  require("../../../assets/images/lore/necromancer1.png"),
+  require("../../../assets/images/lore/necromancer2.png"),
+  require("../../../assets/images/lore/necromancer3.png"),
+  require("../../../assets/images/lore/necromancer4.png"),
+  require("../../../assets/images/lore/necromancer5.png"),
+  require("../../../assets/images/lore/necromancer6.png"),
 ];
 
 type ArchetypeGalleryType = {

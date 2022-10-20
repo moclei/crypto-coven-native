@@ -39,7 +39,7 @@ export default function AssetList(): JSX.Element {
   return (
     <StyledAssetList>
       <StyledImageBackground
-        source={require("../../../assets/image/website-full.png")}
+        source={require("../../../assets/images/website-full.png")}
         resizeMode="cover"
       >
         {assetsData && (

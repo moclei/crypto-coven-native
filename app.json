@@ -2,8 +2,8 @@
   "expo": {
     "name": "crypto-coven-native",
     "slug": "crypto-coven-native",
-    "version": "1.0.0",
-    "sdkVersion": "44.0.0",
+    "icon": "./assets/images/app_image_dark.png",
+    "version": "1.1.1",
     "platforms": [
       "ios",
       "android",
@@ -11,6 +11,10 @@
     ],
     "android": {
       "package": "com.moclei.cryptocovennative",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/app-logo-transparent-dark-1024.png",
+        "backgroundColor": "#1f2125"
+      },
       "intentFilters": [
         {
           "action": "VIEW",
@@ -20,16 +24,17 @@
             }
           ]
         }
-      ]
+      ],
+      "versionCode": 10
     },
-
     "extra": {
       "eas": {
         "projectId": "9401bd2b-379c-4c11-b33f-6b9e66bab726"
       }
     },
     "ios": {
-      "bundleIdentifier": "com.moclei.cryptocovennative"
+      "bundleIdentifier": "com.moclei.cryptocovennative",
+      "buildNumber": "11"
     }
   }
 }

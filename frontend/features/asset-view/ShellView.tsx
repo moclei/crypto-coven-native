@@ -1,11 +1,9 @@
 import { Audio, AVPlaybackStatus } from "expo-av";
 import { Sound } from "expo-av/build/Audio/Sound";
-import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, View } from "react-native";
 import styled from "styled-components/native";
 
-import { CovenAsset } from "../../../model/types";
 import { SoundPlayer } from "../sound-player/SoundPlayer";
 
 const shell = "https://d3ohv66tlx3ep1.cloudfront.net/shell.png";
@@ -18,7 +16,6 @@ const StyledImageBackground = styled.ImageBackground`
   color: white;
   display: flex;
   flex: 1;
-  padding: 24px;
 `;
 
 const StyledShell = styled(Animated.Image)`
@@ -27,15 +24,20 @@ const StyledShell = styled(Animated.Image)`
   top: 14%;
 `;
 
+const StyledPlayContainer = styled.View`
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  padding: 12px;
+  display: flex;
+`;
+
 interface AssetViewProps {
-  data: CovenAsset;
   index: number;
 }
 
-export default function ShellView({
-  data,
-  index,
-}: AssetViewProps): JSX.Element {
+export default function ShellView({ index }: AssetViewProps): JSX.Element {
   const hoverAnimation = useRef(new Animated.ValueXY()).current;
   const [sound] = useState<Sound>(new Audio.Sound());
   const [status, setStatus] = useState<AVPlaybackStatus>(null);
@@ -122,12 +124,12 @@ export default function ShellView({
   }
   return (
     <StyledImageBackground
-      source={require("../../../assets/image/shell_bg_with_glow_scaled_low.png")}
+      source={require("../../../assets/images/shell_bg_with_glow_scaled_low.png")}
       resizeMode="cover"
       index={index}
     >
       <StyledShell style={animatedStyles} source={{ uri: shell }} />
-      <View style={{ bottom: 0, left: 0, position: "absolute", width: "100%" }}>
+      <StyledPlayContainer>
         {status !== null && (
           <SoundPlayer
             isPlaying={isPlaying}
@@ -135,12 +137,7 @@ export default function ShellView({
             audioControl={status}
           />
         )}
-      </View>
-      {/*<StatusBar
-        backgroundColor="transparent"
-        style={"light"}
-        translucent={true}
-      />*/}
+      </StyledPlayContainer>
     </StyledImageBackground>
   );
 }

@@ -1,7 +1,7 @@
 import { MotionSvg } from "@legendapp/motion/svg";
 import React, { useState } from "react";
 import { View } from "react-native";
-import { Defs, Mask } from "react-native-svg";
+import * as RNSvg from "react-native-svg";
 
 import useInterval from "../../services/useInterval";
 
@@ -27,8 +27,8 @@ export default function LoadingMoon({ diameter }: LoadingMoonProps) {
   return (
     <View style={{ height: diameter, width: diameter }}>
       <MotionSvg.Svg height={diameter} width={diameter}>
-        <Defs>
-          <Mask id="Mask">
+        <RNSvg.Defs>
+          <RNSvg.Mask id="Mask">
             <MotionSvg.Rect
               stroke="#555"
               width={"100%"}
@@ -52,8 +52,8 @@ export default function LoadingMoon({ diameter }: LoadingMoonProps) {
                 },
               }}
             />
-          </Mask>
-        </Defs>
+          </RNSvg.Mask>
+        </RNSvg.Defs>
         <MotionSvg.Circle
           id={"donut"}
           r={diameter / 2}

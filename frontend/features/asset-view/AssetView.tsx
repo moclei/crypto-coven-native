@@ -88,7 +88,7 @@ export default function AssetView({ index }: AssetViewProps): JSX.Element {
   }, [route]);
   return (
     <StyledImageBackground
-      source={require("../../../assets/image/website-full.png")}
+      source={require("../../../assets/images/website-full.png")}
       resizeMode="cover"
       index={index}
     >
