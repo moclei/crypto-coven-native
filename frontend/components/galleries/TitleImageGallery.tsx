@@ -30,27 +30,27 @@ export default function TitleImageGallery(): JSX.Element {
       <StyledImageBox
         size={122}
         opacity={0.1}
-        source={require("../../../assets/image/witch1.png")}
+        source={require("../../../assets/images/witch1.png")}
       />
       <StyledImageBox
         size={142}
         opacity={0.4}
-        source={require("../../../assets/image/witch2.png")}
+        source={require("../../../assets/images/witch2.png")}
       />
       <StyledImageBox
         size={162}
         opacity={1}
-        source={require("../../../assets/image/witch3.png")}
+        source={require("../../../assets/images/witch3.png")}
       />
       <StyledImageBox
         size={142}
         opacity={0.4}
-        source={require("../../../assets/image/witch4.png")}
+        source={require("../../../assets/images/witch4.png")}
       />
       <StyledImageBox
         size={122}
         opacity={0.1}
-        source={require("../../../assets/image/witch5.png")}
+        source={require("../../../assets/images/witch5.png")}
       />
     </StyledContainer>
   );

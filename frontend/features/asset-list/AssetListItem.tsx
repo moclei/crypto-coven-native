@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 

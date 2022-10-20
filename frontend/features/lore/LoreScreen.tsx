@@ -59,7 +59,7 @@ export default function LoreScreen({ navigation }): JSX.Element {
   return (
     <StyledContainer>
       <StyledImageBackground
-        source={require("../../../assets/image/website-full.png")}
+        source={require("../../../assets/images/website-full.png")}
         resizeMode="cover"
       >
         <StyledContent>

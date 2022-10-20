@@ -2,12 +2,11 @@ import {
   Inconsolata_600SemiBold,
   useFonts,
 } from "@expo-google-fonts/inconsolata";
-import React from "react";
+import React, { useMemo } from "react";
 import { Text } from "react-native";
 import styled from "styled-components/native";
 
 const StyledContainer = styled.View`
-  width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -46,6 +45,7 @@ type ButtonProps = {
   isConnected: boolean;
   dark?: boolean;
   opacity?: number;
+  walletAddress: string;
 };
 
 export default function ConnectWalletButton({
@@ -53,10 +53,18 @@ export default function ConnectWalletButton({
   isLoading,
   onConnectPress,
   dark = false,
+  walletAddress,
 }: ButtonProps): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Inconsolata_600SemiBold,
-  });
+  const walletStr = useMemo(() => {
+    if (walletAddress) {
+      return (
+        walletAddress.substr(0, 4) +
+        "...." +
+        walletAddress.substr(walletAddress.length - 4, walletAddress.length - 1)
+      );
+    } else return "";
+  }, [walletAddress]);
+
   return (
     <StyledContainer>
       <StyledButton
@@ -75,7 +83,7 @@ export default function ConnectWalletButton({
           {isLoading
             ? "Loading..."
             : isConnected
-            ? "Disconnect"
+            ? walletStr
             : "Connect Wallet"}
         </Text>
       </StyledButton>

@@ -1,14 +1,16 @@
 import { useWalletConnect } from "@walletconnect/react-native-dapp";
 import React, { useCallback, useEffect, useState } from "react";
 
+const OVERRIDE = false;
 type WitchHookProps = {
   navigation: any;
 };
+// Test account: "0x7ab2FB2cE6Eb0dD5FBD196436215D2956d01d7ea"
 export default function useWitches({ navigation }: WitchHookProps) {
   const connector = useWalletConnect();
   const [loading, setLoading] = useState(false);
   const [connected, setConnected] = useState(false);
-  const [guestMode, setGuestMode] = useState(false);
+  const [guestMode, setGuestMode] = useState(true);
   const [account, setAccount] = useState(null);
   const [witches, setWitches] = useState(null);
   const [shells, setShells] = useState(null);
@@ -22,7 +24,7 @@ export default function useWitches({ navigation }: WitchHookProps) {
     }
   }, [connected]);
   useEffect(() => {
-    if (account && connected) {
+    if ((account && connected) || OVERRIDE) {
       getAccountInfo(account).then(({ shell, witches }) => {
         setWitches(witches);
         setShells(shell.length > 0 ? shell[0] : null);
@@ -79,6 +81,7 @@ export default function useWitches({ navigation }: WitchHookProps) {
         }
       );
       const json = await response.json();
+      setGuestMode(false);
       return { shell: json.shell.assets, witches: json.witches.assets };
     } catch (error) {
       console.error("CryptoCoven error: ", error);

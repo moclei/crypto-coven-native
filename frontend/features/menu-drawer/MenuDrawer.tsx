@@ -1,4 +1,5 @@
-import React from "react";
+import { useRoute } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 
@@ -28,11 +29,14 @@ export default function MenuDrawer({
   navigation,
   witches,
   shell,
-  isConnected,
   isGuestMode,
-  isLoading,
-  onConnectPress,
 }: MenuDrawerProps) {
+  const [routeName, setRouteName] = useState("");
+  useEffect(() => {
+    const navState = navigation.getState();
+    const index = navState.index;
+    setRouteName(navState.routes[index].name);
+  }, [navigation.getState()]);
   const onHomePress = () => {
     navigation.navigate("Landing");
   };
@@ -45,39 +49,50 @@ export default function MenuDrawer({
       screen: "AssetList",
     });
   };
-  const onCreatorsPress = () => {
+  const onLorePress = () => {
     navigation.navigate("LoreStack");
+  };
+  const onCreatorsPress = () => {
+    navigation.navigate("Creators");
   };
 
   return (
     <StyledMenuContainer>
       <MainTitle hideWitchGallery dark size={90} fontSize={32} />
       <TouchableOpacity onPress={onHomePress}>
-        <Subtitle color={"#FFF"} opacity={0.5}>
+        <Subtitle color={"#FFF"} opacity={routeName === "Landing" ? 1 : 0.5}>
           Home
         </Subtitle>
       </TouchableOpacity>
       {!isGuestMode && (
         <TouchableOpacity onPress={onWitchesPress}>
-          <Subtitle color={"#FFF"} opacity={0.5}>
+          <Subtitle
+            color={"#FFF"}
+            opacity={routeName === "AssetStack" ? 1 : 0.5}
+          >
             Witches
           </Subtitle>
         </TouchableOpacity>
       )}
-      <TouchableOpacity onPress={onCreatorsPress}>
-        <Subtitle color={"#FFF"} opacity={0.5}>
+      <TouchableOpacity onPress={onLorePress}>
+        <Subtitle color={"#FFF"} opacity={routeName === "LoreStack" ? 1 : 0.5}>
           Lore
         </Subtitle>
       </TouchableOpacity>
+      <TouchableOpacity onPress={onCreatorsPress}>
+        <Subtitle color={"#FFF"} opacity={routeName === "Creators" ? 1 : 0.5}>
+          Creators
+        </Subtitle>
+      </TouchableOpacity>
       <View style={{ flex: 1 }} />
-      <View style={{ height: 180 }}>
+      {/*<View style={{ height: 180 }}>
         <ConnectWalletButton
           dark={true}
           isLoading={isLoading}
           isConnected={isConnected}
           onConnectPress={onConnectPress}
         />
-      </View>
+      </View>*/}
     </StyledMenuContainer>
   );
 }

@@ -1,8 +1,3 @@
-import {
-  Inconsolata_800ExtraBold,
-  useFonts,
-} from "@expo-google-fonts/inconsolata";
-import AppLoading from "expo-app-loading";
 import React, { ReactNode } from "react";
 import styled from "styled-components/native";
 

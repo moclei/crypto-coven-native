@@ -1,5 +1,3 @@
-import { useFonts } from "@expo-google-fonts/inconsolata";
-import AppLoading from "expo-app-loading";
 import React, { ReactNode } from "react";
 import styled from "styled-components/native";
 
@@ -19,6 +17,7 @@ interface Header2Props {
   children: ReactNode;
   style?: React.CSSProperties;
   color?: string;
+  bold?: boolean;
   opacity?: number;
   padding?: string;
 }
@@ -26,6 +25,7 @@ export default function Header2({
   children,
   style,
   color,
+  bold = false,
   opacity,
   padding,
 }: Header2Props): JSX.Element {
@@ -33,7 +33,10 @@ export default function Header2({
     <StyledHeader2
       color={color}
       opacity={opacity}
-      style={[{ fontFamily: "Eskapade" }, style]}
+      style={[
+        bold ? { fontFamily: "Eskapade_Bold" } : { fontFamily: "Eskapade" },
+        style,
+      ]}
     >
       {children}
     </StyledHeader2>

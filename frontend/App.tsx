@@ -28,6 +28,7 @@ import AppLoading from "./features/app-loading/AppLoading";
 import AssetList from "./features/asset-list/AssetList";
 import AssetView from "./features/asset-view/AssetView";
 import ShellView from "./features/asset-view/ShellView";
+import Creators from "./features/creators/Creators";
 import Header from "./features/header/Header";
 import Landing from "./features/landing/Landing";
 import ArchetypeView from "./features/lore/ArchetypeView";
@@ -66,6 +67,7 @@ export type LandingNavProps = NativeStackScreenProps<
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
     Eskapade: require("../assets/fonts/Eskapade-Fraktur.ttf"),
+    Eskapade_Bold: require("../assets/fonts/Eskapade-Fraktur-W04-Black.ttf"),
     Gothicus: require("../assets/fonts/Gothicus-Roman.ttf"),
     Inconsolata_200ExtraLight,
     Inconsolata_300Light,
@@ -104,7 +106,14 @@ export default function App(): JSX.Element {
     });
   }, []);
 
-  const getNavHeader = (navigation, route, options, dark?) => {
+  const getNavHeader = (
+    navigation,
+    route,
+    options,
+    dark?,
+    showConnect?,
+    colorOverride?
+  ) => {
     return (
       <Header
         isLoading={loading}
@@ -114,6 +123,8 @@ export default function App(): JSX.Element {
         onConnectPress={connectWallet}
         navigation={navigation}
         dark={dark || false}
+        colorOverride={colorOverride}
+        showConnect={showConnect}
       />
     );
   };
@@ -177,7 +188,7 @@ export default function App(): JSX.Element {
           component={LoreScreen}
           options={{
             header: ({ navigation, route, options }) =>
-              getNavHeader(navigation, route, options, true),
+              getNavHeader(navigation, route, options, true, false, "#2a2d31"),
           }}
         />
         <Stack.Screen
@@ -208,7 +219,7 @@ export default function App(): JSX.Element {
         <NavigationContainer ref={navigationRef}>
           <Drawer.Navigator
             screenOptions={{
-              drawerPosition: "right",
+              drawerPosition: "left",
               drawerStyle: {
                 backgroundColor: "white",
                 zIndex: 1000,
@@ -250,6 +261,21 @@ export default function App(): JSX.Element {
               name="AssetStack"
               component={AssetStack}
               options={{ headerShown: false }}
+            />
+            <Drawer.Screen
+              name="Creators"
+              component={Creators}
+              options={{
+                header: ({ navigation, route, options }) =>
+                  getNavHeader(
+                    navigation,
+                    route,
+                    options,
+                    true,
+                    false,
+                    "#2a2d31"
+                  ),
+              }}
             />
           </Drawer.Navigator>
         </NavigationContainer>

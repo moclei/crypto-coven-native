@@ -104,7 +104,7 @@ export const SoundPlayer = ({
             {!standalone && <Spacer> — </Spacer>}
             <Text>The Siren's Song by Jaks</Text>
           </View>
-          <Text style={{ textAlign: "right" }}>
+          <Text style={{ textAlign: "right", paddingRight: 24 }}>
             {new Date(trackProgress).toISOString().substr(15, 4)} / 1:04
           </Text>
         </View>
@@ -113,7 +113,7 @@ export const SoundPlayer = ({
             backgroundColor: "white",
             height: 4,
             marginTop: 8,
-            width: "100%",
+            width: "90%",
           }}
         >
           <View
