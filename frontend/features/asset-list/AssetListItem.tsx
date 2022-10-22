@@ -7,6 +7,8 @@ import styled from "styled-components/native";
 import { CovenAsset } from "../../../model/types";
 import { RootStackParamList } from "../../App";
 import LoadingMoon from "../../components/loading/LoadingMoon";
+import MaskedLandingMoon from "../../components/loading/MaskedLoadingMoon";
+import NewLandingMoon from "../../components/loading/NewLoadingMoon";
 import Body1 from "../../components/typography/Body1";
 
 interface StyledItemProps {
@@ -71,10 +73,13 @@ export default function AssetListItem({
         witchVisible={witchVisible}
         onLoadEnd={() => setWitchVisible(true)}
       />
-      {!witchVisible && <LoadingMoon diameter={windowWidth / 2 - 48} />}
+      {!witchVisible && <LoadingMoon height={160} diameter={60} />}
       <StyledTextContainer>
         <Body1>{data.name}</Body1>
       </StyledTextContainer>
     </StyledALItem>
   );
 }
+/*
+<LoadingMoon diameter={windowWidth / 2 - 48} />
+ */
