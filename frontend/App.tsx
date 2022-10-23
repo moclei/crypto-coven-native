@@ -188,7 +188,7 @@ export default function App(): JSX.Element {
           component={LoreScreen}
           options={{
             header: ({ navigation, route, options }) =>
-              getNavHeader(navigation, route, options, true, false, "#2a2d31"),
+              getNavHeader(navigation, route, options, true, false),
           }}
         />
         <Stack.Screen

@@ -24,11 +24,11 @@ const StyledContent = styled.ScrollView`
 
 const StyledButton = styled.TouchableOpacity`
   display: flex;
-  padding: 0 24px;
+  padding: 0 24px 6px 24px;
   border-radius: 8px;
   border-color: white;
   border-width: 1px;
-  width: 260px;
+  width: 100%;
   margin: 4px 0;
   align-items: center;
 `;
@@ -36,8 +36,8 @@ const StyledButton = styled.TouchableOpacity`
 const StyledHorizontalLine = styled.View`
   height: 1px;
   background-color: lightgray;
-  width: 90%;
-  margin: 24px 24px;
+  width: 100%;
+  margin: 12px 0 24px 0;
 `;
 
 const StyledCenterView = styled.View`
@@ -45,6 +45,7 @@ const StyledCenterView = styled.View`
   align-items: center;
   justify-content: center;
   padding: 12px 0;
+  width: 100%;
 `;
 
 type StyledStartViewProps = {
@@ -62,9 +63,17 @@ export default function LoreScreen({ navigation }): JSX.Element {
         source={require("../../../assets/images/website-full.png")}
         resizeMode="cover"
       >
-        <StyledContent>
+        <StyledContent
+          scrollIndicatorInsets={1}
+          contentContainerStyle={{
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
           <StyledCenterView>
-            <Header2 color={"white"}>Lore</Header2>
+            <Header2 color={"white"} style={{ paddingBottom: 24 }}>
+              Lore
+            </Header2>
             <Body2 style={{ textAlign: "center" }}>
               Before the dead were put to rest, before the wizard kings were
               cast off thrones of pale bone... before their unassailable walls
@@ -103,9 +112,11 @@ export default function LoreScreen({ navigation }): JSX.Element {
           </StyledStartView>
           <StyledHorizontalLine />
           <StyledStartView>
-            <Header2 color={"white"}>Archetypes of Power</Header2>
+            <Header2 color={"white"} style={{ textAlign: "center" }}>
+              Archetypes of Power
+            </Header2>
           </StyledStartView>
-          <StyledCenterView>
+          <StyledCenterView style={{ paddingBottom: 64 }}>
             <StyledButton
               onPress={() =>
                 navigation.navigate("ArchetypeView", {

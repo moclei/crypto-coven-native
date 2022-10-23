@@ -3,7 +3,7 @@
     "name": "crypto-coven-native",
     "slug": "crypto-coven-native",
     "icon": "./assets/images/app_image_dark.png",
-    "version": "1.1.1",
+    "version": "1.2.1",
     "platforms": [
       "ios",
       "android",
@@ -25,7 +25,7 @@
           ]
         }
       ],
-      "versionCode": 10
+      "versionCode": 11
     },
     "extra": {
       "eas": {
@@ -34,7 +34,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.moclei.cryptocovennative",
-      "buildNumber": "11"
+      "buildNumber": "13"
     }
   }
 }

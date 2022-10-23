@@ -63,7 +63,7 @@ export default function Creators(): JSX.Element {
           </View>
         </StyledImageBackground>
 
-        <CreatorContainer>
+        <CreatorContainer style={{ marginTop: -60 }}>
           <Thumbnail
             source={require("../../../assets/images/nyx_thumbnail.png")}
             resizeMode="contain"
@@ -73,7 +73,7 @@ export default function Creators(): JSX.Element {
           </Header3>
           <Body2 style={{ paddingTop: 8 }}>conjuror of visions</Body2>
           <Body2
-            style={{ paddingBottom: 8, paddingTop: 8, textAlign: "center" }}
+            style={{ paddingBottom: 48, paddingTop: 8, textAlign: "center" }}
           >
             art, lore, code, concepts to fruition
           </Body2>
@@ -89,7 +89,7 @@ export default function Creators(): JSX.Element {
           </Header3>
           <Body2 style={{ paddingTop: 8 }}>aesthetic artificer</Body2>
           <Body2
-            style={{ paddingBottom: 8, paddingTop: 8, textAlign: "center" }}
+            style={{ paddingBottom: 48, paddingTop: 8, textAlign: "center" }}
           >
             art, visual development, interpretation of emotions
           </Body2>
@@ -105,7 +105,7 @@ export default function Creators(): JSX.Element {
           </Header3>
           <Body2 style={{ paddingTop: 8 }}>keeper of the coven</Body2>
           <Body2
-            style={{ paddingBottom: 8, paddingTop: 8, textAlign: "center" }}
+            style={{ paddingBottom: 48, paddingTop: 8, textAlign: "center" }}
           >
             culturecraft, code, project stitchwork
           </Body2>
@@ -121,7 +121,7 @@ export default function Creators(): JSX.Element {
           </Header3>
           <Body2 style={{ paddingTop: 8 }}>weaver of webs</Body2>
           <Body2
-            style={{ paddingBottom: 8, paddingTop: 8, textAlign: "center" }}
+            style={{ paddingBottom: 48, paddingTop: 8, textAlign: "center" }}
           >
             sound direction, names, code
           </Body2>
@@ -136,7 +136,9 @@ export default function Creators(): JSX.Element {
             Keridwen
           </Header3>
           <Body2 style={{ paddingTop: 8 }}>witch articulator</Body2>
-          <Body2 style={{ paddingTop: 8, textAlign: "center" }}>
+          <Body2
+            style={{ paddingBottom: 48, paddingTop: 8, textAlign: "center" }}
+          >
             wordsmithery, lore, wise cracks
           </Body2>
         </CreatorContainer>

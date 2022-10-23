@@ -1,31 +1,43 @@
 import { MotionSvg } from "@legendapp/motion/svg";
 import React, { useState } from "react";
-import { View } from "react-native";
+import { Easing, View } from "react-native";
 import * as RNSvg from "react-native-svg";
 
 import useInterval from "../../services/useInterval";
 
 type LoadingMoonProps = {
   diameter: number;
+  height: number;
 };
-const moonPositions = [20, 20, -20, 60];
-export default function LoadingMoon({ diameter }: LoadingMoonProps) {
+const moonPositions = [-30, 30, 30, 90];
+export default function LoadingMoon({ diameter, height }: LoadingMoonProps) {
   const [rotation, setRotation] = useState(-10);
-  const [moonCenter, setMoonCenter] = useState(20); // -20, 20, 20, 60
+  const [moonCenter, setMoonCenter] = useState(-30); // -20, 20, 20, 60
   const [moonState, setMoonState] = useState(0);
 
   useInterval(() => {
     setRotation(rotation * -1);
   }, 30000);
 
-  useInterval(() => {
-    if (moonState === 3) {
-      setMoonState(0);
-    } else setMoonState(moonState + 1);
-    setMoonCenter(moonPositions[moonState]);
-  }, 1000);
+  useInterval(
+    () => {
+      if (moonState === 3) {
+        setMoonState(0);
+      } else setMoonState(moonState + 1);
+      setMoonCenter(moonPositions[moonState]);
+    },
+    moonState === 1 || moonState === 2 ? 500 : 1000
+  );
   return (
-    <View style={{ height: diameter, width: diameter }}>
+    <View
+      style={{
+        height: height,
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <MotionSvg.Svg height={diameter} width={diameter}>
         <RNSvg.Defs>
           <RNSvg.Mask id="Mask">
@@ -38,18 +50,17 @@ export default function LoadingMoon({ diameter }: LoadingMoonProps) {
             />
             <MotionSvg.Circle
               stroke="black"
-              cy={diameter / 2}
               r={diameter / 2 - 1}
               strokeWidth="1"
               fill={"black"}
               animateProps={{
                 cx: moonCenter,
+                cy: diameter / 2 - 4 + moonCenter / 8,
               }}
               transition={{
-                cx: {
-                  duration: moonCenter === 60 ? 10 : 1000,
-                  type: "tween",
-                },
+                duration: moonCenter === -30 ? 10 : 1000,
+                type: "timing",
+                easing: Easing.easing,
               }}
             />
           </RNSvg.Mask>
