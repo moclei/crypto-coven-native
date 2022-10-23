@@ -20,10 +20,13 @@ import {
 } from "@react-navigation/native-stack";
 import { StatusBar, StatusBarStyle } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
+import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
 
 import { CovenAsset, WitchArchetype } from "../model/types";
 
+import ConnectWalletButton from "./components/buttons/connect-wallet-button/ConnectWalletButton";
+import MenuButton from "./components/buttons/menu-button/MenuButton";
 import AppLoading from "./features/app-loading/AppLoading";
 import AssetList from "./features/asset-list/AssetList";
 import AssetView from "./features/asset-view/AssetView";
@@ -138,12 +141,6 @@ export default function App(): JSX.Element {
           options={{
             header: ({ navigation, route, options }) =>
               getNavHeader(navigation, route, options, true),
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontFamily: "Eskapade",
-              fontSize: 32,
-            },
-            title: "Your Witches",
           }}
         />
         <Stack.Screen
@@ -266,15 +263,12 @@ export default function App(): JSX.Element {
               name="Creators"
               component={Creators}
               options={{
-                header: ({ navigation, route, options }) =>
-                  getNavHeader(
-                    navigation,
-                    route,
-                    options,
-                    true,
-                    false,
-                    "#2a2d31"
-                  ),
+                headerShown: true,
+                headerTransparent: true,
+                headerTitle: "",
+                headerLeft: () => (
+                  <MenuButton navigation={navigationRef} dark={true} />
+                ),
               }}
             />
           </Drawer.Navigator>
@@ -288,3 +282,15 @@ export default function App(): JSX.Element {
     );
   }
 }
+
+/*
+ header: ({ navigation, route, options }) =>
+                  getNavHeader(
+                    navigation,
+                    route,
+                    options,
+                    true,
+                    false,
+                    "#2a2d31"
+                  ),
+ */

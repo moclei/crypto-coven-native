@@ -1,14 +1,12 @@
 import { useNavigation } from "@react-navigation/core";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
-import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 
 import { CovenAsset } from "../../../model/types";
 import { RootStackParamList } from "../../App";
+import AssetImage from "../../components/image/AssetImage";
 import LoadingMoon from "../../components/loading/LoadingMoon";
-import MaskedLandingMoon from "../../components/loading/MaskedLoadingMoon";
-import NewLandingMoon from "../../components/loading/NewLoadingMoon";
 import Body1 from "../../components/typography/Body1";
 
 interface StyledItemProps {
@@ -25,17 +23,6 @@ const StyledALItem = styled.TouchableOpacity<StyledItemProps>`
     props.index === 0 || props.index % 2 === 0 ? "12px" : "24px"}
   padding-left: ${(props) =>
     props.index === 0 || props.index % 2 === 0 ? "24px" : "12px"}
-`;
-
-type StyledImageProps = {
-  witchVisible: boolean;
-};
-const StyledImage = styled.Image<StyledImageProps>`
-  width: 100%;
-  height: ${(props) => (props.witchVisible ? "160px" : "1px")};
-  align-items: center;
-  justify-content: center;
-  opacity: ${(props) => (props.witchVisible ? 1 : 0)};
 `;
 
 const StyledTextContainer = styled.View`
@@ -59,7 +46,6 @@ export default function AssetListItem({
 }: AssetItemListProps): JSX.Element {
   const navigation = useNavigation<AssetListProps["navigation"]>();
   const [witchVisible, setWitchVisible] = useState(false);
-  const windowWidth = Dimensions.get("window").width;
   const onPress = (asset: CovenAsset) => {
     navigation.navigate("AssetView", {
       asset: asset,
@@ -68,10 +54,10 @@ export default function AssetListItem({
 
   return (
     <StyledALItem index={index} onPress={() => onPress(data)}>
-      <StyledImage
-        source={{ uri: data.image_original_url }}
+      <AssetImage
+        imageUrl={data.image_original_url}
         witchVisible={witchVisible}
-        onLoadEnd={() => setWitchVisible(true)}
+        handleLoad={() => setWitchVisible(true)}
       />
       {!witchVisible && <LoadingMoon height={160} diameter={60} />}
       <StyledTextContainer>
@@ -80,6 +66,3 @@ export default function AssetListItem({
     </StyledALItem>
   );
 }
-/*
-<LoadingMoon diameter={windowWidth / 2 - 48} />
- */

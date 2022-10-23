@@ -70,7 +70,7 @@ export default function useWitches({ navigation }: WitchHookProps) {
       const response = await fetch(
         "https://cryptocovennative-backend.uc.r.appspot.com/assets?" +
           new URLSearchParams({
-            address: accountId,
+            address: "0x7ab2FB2cE6Eb0dD5FBD196436215D2956d01d7ea", // accountId,
           }),
         {
           headers: {
