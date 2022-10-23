@@ -1,10 +1,12 @@
 import { useNavigation } from "@react-navigation/core";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 
 import { CovenAsset } from "../../../model/types";
 import { RootStackParamList } from "../../App";
+import AssetImage from "../../components/image/AssetImage";
+import LoadingMoon from "../../components/loading/LoadingMoon";
 import Body1 from "../../components/typography/Body1";
 
 interface StyledShellProps {
@@ -15,7 +17,7 @@ const StyledShellListItem = styled.TouchableOpacity<StyledShellProps>`
   align-items: center;
   justify-content: space-between;
   color: white;
-  height: 300px;
+  height: 260px;
   width: 50%;
   padding-right: ${(props) =>
     props.index === 0 || props.index % 2 === 0 ? "12px" : "24px"}
@@ -23,16 +25,10 @@ const StyledShellListItem = styled.TouchableOpacity<StyledShellProps>`
     props.index === 0 || props.index % 2 === 0 ? "24px" : "12px"}
 `;
 
-const StyledImage = styled.Image`
-  width: 100%;
-  height: 180px;
-  align-items: center;
-  justify-content: center;
-`;
-
 const StyledTextContainer = styled.View`
   display: flex;
   flex: 1;
+  idth: 100%;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -49,6 +45,7 @@ export default function ShellListItem({
   index,
 }: ShellListItemProps): JSX.Element {
   const navigation = useNavigation<AssetListProps["navigation"]>();
+  const [witchVisible, setWitchVisible] = useState(false);
   const onPress = (asset: CovenAsset) => {
     navigation.navigate("ShellView", {
       asset: asset,
@@ -56,7 +53,12 @@ export default function ShellListItem({
   };
   return (
     <StyledShellListItem index={index} onPress={() => onPress(data)}>
-      <StyledImage source={{ uri: data.asset_contract.image_url }} />
+      <AssetImage
+        imageUrl={data.image_original_url}
+        witchVisible={witchVisible}
+        handleLoad={() => setWitchVisible(true)}
+      />
+      {!witchVisible && <LoadingMoon height={160} diameter={60} />}
       <StyledTextContainer>
         <Body1>{data.name}</Body1>
       </StyledTextContainer>

@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { DrawerActions } from "@react-navigation/native";
 import React from "react";
 import styled from "styled-components/native";
 
@@ -19,7 +20,7 @@ const StyledButton = styled.TouchableOpacity<StyledButtonProps>`
   align-items: center;
   justify-content: center;
   height: 36px;
-  padding: 0 16px;
+  padding: 0 8px;
   margin: 0 16px;
   background-color: transparent;
   color: rgb(30, 33, 37);
@@ -39,7 +40,8 @@ export default function MenuButton({
   dark,
 }: ButtonProps): JSX.Element {
   const onMenuPress = () => {
-    navigation.toggleDrawer();
+    navigation.dispatch(DrawerActions.openDrawer());
+    //navigation.toggleDrawer();
   };
   return (
     <StyledContainer>

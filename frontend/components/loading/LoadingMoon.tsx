@@ -50,7 +50,7 @@ export default function LoadingMoon({ diameter, height }: LoadingMoonProps) {
             />
             <MotionSvg.Circle
               stroke="black"
-              r={diameter / 2 - 1}
+              r={diameter / 2 - 2}
               strokeWidth="1"
               fill={"black"}
               animateProps={{

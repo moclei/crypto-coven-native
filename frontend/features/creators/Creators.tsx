@@ -63,7 +63,7 @@ export default function Creators(): JSX.Element {
           </View>
         </StyledImageBackground>
 
-        <CreatorContainer style={{ marginTop: -60 }}>
+        <CreatorContainer style={{ marginTop: -120 }}>
           <Thumbnail
             source={require("../../../assets/images/nyx_thumbnail.png")}
             resizeMode="contain"
