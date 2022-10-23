@@ -93,12 +93,12 @@ export default function AssetView({ index }: AssetViewProps): JSX.Element {
       index={index}
     >
       <StyledScrollView>
-        <StyledImage
+        {/*<StyledImage
           source={{ uri: asset.image_original_url }}
           witchVisible={witchVisible}
           onLoadEnd={() => setWitchVisible(true)}
-        />
-        {!witchVisible && <LoadingMoon diameter={windowWidth - 48} />}
+        />*/}
+        {!witchVisible && <LoadingMoon diameter={60} height={400} />}
         <StyledTextContainer>
           <Overline>name</Overline>
           <Body2>{capitalizeFirst(asset.name)}</Body2>
@@ -124,11 +124,6 @@ export default function AssetView({ index }: AssetViewProps): JSX.Element {
           <AttunementGauge name={"woe"} value={woe} />
         </AttunementsContainer>
       </StyledScrollView>
-      {/* <StatusBar
-        backgroundColor="transparent"
-        style={"light"}
-        translucent={true}
-      />*/}
     </StyledImageBackground>
   );
 }

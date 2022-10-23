@@ -10,6 +10,7 @@ const StyledContainer = styled.View`
   width: 100%;
   height: 100%;
   background-color: #2a2d31;
+  padding-top: 84px;
 `;
 
 const StyledScrollView = styled.ScrollView`
@@ -45,18 +46,18 @@ export default function Creators(): JSX.Element {
     <StyledContainer>
       <StyledScrollView
         contentContainerStyle={{
+          alignItems: "center",
+          backgroundColor: "#2a2d31",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           justifyContent: "flex-start",
-          backgroundColor: "#2a2d31",
         }}
       >
         <StyledImageBackground
           source={require("../../../assets/images/eyes_full.png")}
           resizeMode="contain"
         >
-          <View style={{ paddingTop: 48, backgroundColor: "#2a2d31" }}>
+          <View style={{ backgroundColor: "#2a2d31", paddingTop: 48 }}>
             <Header2 color={"white"} style={{ fontSize: 58 }}>
               Creators
             </Header2>
@@ -71,7 +72,7 @@ export default function Creators(): JSX.Element {
           <Header3 style={{ fontSize: 48 }} color={"white"}>
             Nyx
           </Header3>
-          <Body2 style={{ paddingTop: 8 }}>conjuror of visions</Body2>
+          <Body2 style={{ paddingTop: 8 }}>conjurer of visions</Body2>
           <Body2
             style={{ paddingBottom: 48, paddingTop: 8, textAlign: "center" }}
           >

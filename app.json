@@ -25,7 +25,7 @@
           ]
         }
       ],
-      "versionCode": 11
+      "versionCode": 12
     },
     "extra": {
       "eas": {
@@ -34,7 +34,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.moclei.cryptocovennative",
-      "buildNumber": "13"
+      "buildNumber": "14"
     }
   }
 }

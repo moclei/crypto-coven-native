@@ -23,7 +23,6 @@ const StyledContainer = styled.View`
       : "#eee"};
   color: ${(props) => (props.dark ? "white" : "black")};
 `;
-//  background-color: lightgreen;
 type HeaderProps = {
   walletAddress: string;
   onConnectPress: () => void;

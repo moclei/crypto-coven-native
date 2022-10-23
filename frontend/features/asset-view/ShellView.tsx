@@ -1,7 +1,7 @@
 import { Audio, AVPlaybackStatus } from "expo-av";
 import { Sound } from "expo-av/build/Audio/Sound";
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, View } from "react-native";
+import { Animated } from "react-native";
 import styled from "styled-components/native";
 
 import { SoundPlayer } from "../sound-player/SoundPlayer";

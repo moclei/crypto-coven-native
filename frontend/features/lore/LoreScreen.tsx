@@ -14,7 +14,6 @@ const StyledContainer = styled.View`
 
 const StyledImageBackground = styled.ImageBackground`
   flex: 1;
-  padding-top: 24px;
 `;
 
 const StyledContent = styled.ScrollView`
@@ -71,7 +70,10 @@ export default function LoreScreen({ navigation }): JSX.Element {
           }}
         >
           <StyledCenterView>
-            <Header2 color={"white"} style={{ paddingBottom: 24 }}>
+            <Header2
+              color={"white"}
+              style={{ fontSize: 58, paddingBottom: 24 }}
+            >
               Lore
             </Header2>
             <Body2 style={{ textAlign: "center" }}>
