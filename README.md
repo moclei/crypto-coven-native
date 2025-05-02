@@ -1,13 +1,88 @@
-# TypeScript Example
+# Crypto Coven Native
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
+A cross-platform mobile application (iOS & Android) that integrates with Metamask and OpenSea APIs, allowing users to connect their Ethereum wallets and view their Crypto Coven NFT assets.
+
+<p align="center">
+  <img src="assets/images/crypto_coven_native.jpg" width="250" alt="Crypto Coven App Screenshot 1" />
+  <img src="assets/images/crypto_coven_native_2.jpg" width="250" alt="Crypto Coven App Screenshot 2" />
+  <img src="assets/images/crypto_coven_native_3.jpg" width="250" alt="Crypto Coven App Screenshot 3" />
 </p>
+
+## 🧙‍♀️ About
+
+Crypto Coven Native is a mobile dApp that provides a seamless experience for Crypto Coven witch enthusiasts to connect their wallets and view their NFT collections. The app showcases how Web3 technologies can be integrated into mobile applications using React Native.
+
+## 🚀 Tech Stack
+
+- **React Native (Expo)** - Cross-platform mobile development framework
+- **TypeScript** - Type-safe JavaScript development
+- **Web3.js** - Ethereum blockchain interaction
+- **@walletconnect/react-native-dapp** - Mobile wallet connectivity
+- **OpenSea API** - NFT asset retrieval and display
+- **Styled Components** - Component-level styling
+- **React Navigation** - In-app navigation with drawer and native stack
+- **Reanimated** - Advanced animations and interactions
+- **Expo AV** - Audio-visual components for rich media
+
+## ✨ Features
+
+- Connect to Ethereum wallets via WalletConnect
+- View Crypto Coven NFT collections
+- Browse witch details and metadata
+- Responsive design with custom animations
+- Secure blockchain interactions
+- Cross-platform compatibility (iOS & Android)
+
+## 🔧 Development
+
+This project was built using Expo, a platform for universal React applications.
+
+### Prerequisites
+
+- Node.js
+- Yarn or npm
+- Expo CLI
+- iOS Simulator or Android Emulator (for local testing)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/moclei/crypto-coven-native.git
+
+# Navigate to the project
+cd crypto-coven-native
+
+# Install dependencies
+yarn install
+
+# Start the development server
+yarn start
+```
+
+## 📱 Building and Running
+
+```bash
+# Run on iOS
+yarn ios
+
+# Run on Android
+yarn android
+
+# Run on web
+yarn web
+```
+
+## 🧪 Testing
+
+```bash
+# Run tests
+yarn test
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ```sh
 npx create-react-native-app -t with-typescript
